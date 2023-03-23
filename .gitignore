@@ -1,6 +1,11 @@
 .env
 .gitattributes
+.pyc
+.log
 /venv
 /.idea
-/__pycache__
-/utility/*.log
+*/__pycache__/*
+
+
+
+*.log

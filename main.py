@@ -1,7 +1,7 @@
 import os
 import sys
 import tomli
-import discord
+import discord  # pip install py-cord
 from utility.logger import log
 
 bot = discord.Bot(intents=discord.Intents.all())
