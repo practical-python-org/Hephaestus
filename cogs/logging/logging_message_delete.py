@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from datetime import datetime
 from __main__ import config
+from Hephaestus.logs.logger import log_info
 
 
 class logging_message_delete(commands.Cog):
@@ -23,17 +24,13 @@ class logging_message_delete(commands.Cog):
                               , color=discord.Color.dark_red()
                               , timestamp=datetime.utcnow())
         embed.set_thumbnail(url=author.avatar)
-
         embed.add_field(name='Message: '
                         , value=message.content  # ToDo: This throws an error when deleting an embed.
                         , inline=True)
 
         logs_channel = await self.bot.fetch_channel(config['chat_log'])
+        log_info(f"{username} deleted a message.")
 
-        for role in message.author.roles:
-            if role.id in config.values():
-                await logs_channel.send(embed=embed)
-                return
         await logs_channel.send(embed=embed)
 
 

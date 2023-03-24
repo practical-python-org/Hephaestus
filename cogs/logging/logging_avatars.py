@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from datetime import datetime
 from __main__ import config
+from Hephaestus.logs.logger import log_info
 
 
 class logging_avatars(commands.Cog):
@@ -16,6 +17,7 @@ class logging_avatars(commands.Cog):
                                   , timestamp=datetime.utcnow())
             embed.set_thumbnail(url=after.avatar)
 
+            log_info(f"{before} changed their avatar.")
             logs_channel = await self.bot.fetch_channel(config['user_log'])
             await logs_channel.send(embed=embed)
 

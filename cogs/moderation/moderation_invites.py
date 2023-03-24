@@ -3,6 +3,7 @@ import discord
 from datetime import datetime
 from discord.ext import commands
 from __main__ import config
+from Hephaestus.logs.logger import log_info
 
 
 class moderation_invites(commands.Cog):
@@ -41,6 +42,7 @@ class moderation_invites(commands.Cog):
             embed.add_field(name='Message: '
                             , value=message.content
                             , inline=True)
+            log_info(f"{author} sent a discord invite that was caught by spam protection.")
             return embed
 
         def embed_warning(arg_message):

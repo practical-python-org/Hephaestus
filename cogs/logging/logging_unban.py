@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from datetime import datetime
 from __main__ import config
+from Hephaestus.logs.logger import log_info
 
 
 class logging_unbans(commands.Cog):
@@ -18,6 +19,7 @@ class logging_unbans(commands.Cog):
                         , value='Welcome back.'
                         , inline=True)
 
+        log_info(f"{member.name} was unbanned. Welcome back.")
         logs_channel = await self.bot.fetch_channel(config['mod_log'])  # Welcome channel
         await logs_channel.send(embed=embed)
 

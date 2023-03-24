@@ -1,5 +1,5 @@
 from discord.ext import commands
-from utility.logger import log
+from Hephaestus.logs.logger import log_info
 
 
 class onStartup(commands.Cog, command_attrs=dict(hidden=True)):
@@ -8,7 +8,7 @@ class onStartup(commands.Cog, command_attrs=dict(hidden=True)):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        log('Bot is online and operational.')
+        log_info('Bot is online and operational.')
 
 
 def setup(bot):

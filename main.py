@@ -2,7 +2,7 @@ import os
 import sys
 import tomli
 import discord  # pip install py-cord
-from utility.logger import log
+from logs.logger import log_info
 
 bot = discord.Bot(intents=discord.Intents.all())
 
@@ -13,7 +13,7 @@ def load_toml():
     """
     with open("server.toml", "rb") as f:
         f = tomli.load(f)
-        log(f"TOML: {f}")
+        log_info(f"TOML: {f}")
         return f
 
 
@@ -25,7 +25,7 @@ def load_cogs():
     for directory in os.listdir("./cogs"):
         for file in os.listdir(f"./cogs/{directory}"):
             if file.endswith('.py'):
-                log(f"Loading Cog: \\{directory}\\{file}")
+                log_info(f"Loading Cog: \\{directory}\\{file}")
                 bot.load_extension(f"cogs.{directory}.{file[:-3]}")
 
 
@@ -39,7 +39,7 @@ def load_key_and_run():
         TOKEN = sys.argv[1]
         bot.run(TOKEN)
     else:
-        log('ERROR: You must include a bot token.')
+        log_info('ERROR: You must include a bot token.')
 
 
 if __name__ == "__main__":

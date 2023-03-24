@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from datetime import datetime
 from __main__ import config
+from Hephaestus.logs.logger import log_info
 
 
 class logging_messages(commands.Cog):
@@ -32,6 +33,7 @@ class logging_messages(commands.Cog):
                             , inline=True)
 
             logs_channel = await self.bot.fetch_channel(config['chat_log'])  # ADMIN message log
+            log_info(f"{author} edited a message.")
             await logs_channel.send(embed=embed)
 
 

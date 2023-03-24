@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
 from __main__ import config
+from Hephaestus.logs.logger import log_info
+
 
 class admin_purge(commands.Cog, command_attrs=dict(hidden=True)):
     def __init__(self, bot):
@@ -18,19 +20,19 @@ class admin_purge(commands.Cog, command_attrs=dict(hidden=True)):
         # Check that users are not removing from log channels
         if ctx.channel.id in logs_channel.values():
             await ctx.channel.send(f'{ctx.author.mention}, you should not be purging the {ctx.channel.mention}.')
-            await logs_channel.send(f'{ctx.author.mention} atempted to purge the {ctx.channel.mention}.')
+            await logs_channel.send(f'{ctx.author.mention} attempted to purge the {ctx.channel.mention}.')
         else:
             # Do the purge
             await ctx.channel.purge(limit=int(number_messages))
             # Log the purge
+            log_info(f"{ctx.author} purged {number_messages} messages from {ctx.channel}.")
             await logs_channel.send(
                 f'{number_messages} messages purged from {ctx.channel.mention} by {ctx.author.mention}.')
 
-    """
-    Error handling
-    """
-
     async def cog_command_error(self, ctx: commands.Context, error: commands.CommandError):
+        """
+        Error handling
+        """
         if isinstance(error, commands.MissingPermissions):
             await ctx.channel.send(
                 f"Sorry, {ctx.author.name}, you dont have the correct permissions to use this command!",
