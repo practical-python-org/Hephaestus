@@ -1,6 +1,10 @@
 import logging
+import pathlib
+import tomli
 
-logging.basicConfig(filename="logs/testing.log",
+
+log_file_path = pathlib.Path('logs', 'Bot_logs.log')
+logging.basicConfig(filename=log_file_path,
                     format='%(asctime)s - %(levelname)s: %(message)s',
                     datefmt='%Y-%m-%d %H:%M.%S',
                     filemode='w')

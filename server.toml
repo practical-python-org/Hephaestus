@@ -10,7 +10,7 @@ review = 'https://disboard.org/review/create/900302240559018015'
 invite = 'https://discord.gg/vgZmgNwuHw'
 logo = "https://raw.githubusercontent.com/Xarlos89/PracticalPython/main/logo.png"
 id = 1031644670436061324
-
+logFileName = 'Bot_logs.log'
 ############
 # Channels #
 ############
@@ -59,10 +59,3 @@ needs_approval = 1043624460168728606
 # Bad boi roles
 muted = 1062270105339301938
 naughty = 1062270109839790110
-
-#############
-# RSS Feeds #
-#############
-# Links
-jetbrains = 'https://blog.jetbrains.com/pycharm/feed/'
-Python_Software_foundation = 'https://feeds.feedburner.com/PythonSoftwareFoundationNews'

@@ -1,6 +1,1 @@
-- Break logging_leaving into:
-    - logging_kicks
-    - logging_bans
-    - logging_leaves
-
 - logging_message_delete throws an error when deleting an embed

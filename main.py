@@ -5,16 +5,9 @@ import discord  # pip install py-cord
 from logs.logger import log_info
 
 bot = discord.Bot(intents=discord.Intents.all())
-
-
-def load_toml():
-    """
-    Loads the TOML file, and uses it across the bot.
-    """
-    with open("server.toml", "rb") as f:
-        f = tomli.load(f)
-        log_info(f"TOML: {f}")
-        return f
+with open("server.toml", "rb") as f:
+    config = tomli.load(f)
+    log_info("Loading TOML file...")
 
 
 def load_cogs():
@@ -37,12 +30,12 @@ def load_key_and_run():
     """
     if len(sys.argv) > 1:
         TOKEN = sys.argv[1]
+        log_info(f"Bringing bot online... ")
         bot.run(TOKEN)
     else:
         log_info('ERROR: You must include a bot token.')
 
 
 if __name__ == "__main__":
-    config = load_toml()
     load_cogs()
     load_key_and_run()
