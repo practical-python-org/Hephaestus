@@ -17,7 +17,7 @@ def load_cogs():
     """
     for directory in os.listdir("./cogs"):
         for file in os.listdir(f"./cogs/{directory}"):
-            if file.endswith('.py'):
+            if file.endswith('.py') and not file.startswith("_"):
                 log_info(f"Loading Cog: \\{directory}\\{file}")
                 bot.load_extension(f"cogs.{directory}.{file[:-3]}")
 
