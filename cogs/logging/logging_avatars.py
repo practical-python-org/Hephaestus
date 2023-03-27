@@ -1,8 +1,7 @@
-import discord
 from discord.ext import commands
-from datetime import datetime
 from __main__ import config
 from Hephaestus.logs.logger import log_info
+from Hephaestus.cogs.utility._embeds import embed_avatar
 
 
 class logging_avatars(commands.Cog):
@@ -12,12 +11,10 @@ class logging_avatars(commands.Cog):
     @commands.Cog.listener()
     async def on_user_update(self, before, after):
         if before.avatar != after.avatar:
-            embed = discord.Embed(title=f'{before} updated their profile picture!'
-                                  , color=discord.Color.dark_grey()
-                                  , timestamp=datetime.utcnow())
-            embed.set_thumbnail(url=after.avatar)
+            embed = embed_avatar(before, after)
 
             log_info(f"{before} changed their avatar.")
+
             logs_channel = await self.bot.fetch_channel(config['user_log'])
             await logs_channel.send(embed=embed)
 

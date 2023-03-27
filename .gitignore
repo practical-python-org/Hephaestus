@@ -1,7 +1,9 @@
 .env
 */__pycache__/*
 .gitattributes
+*/.pyc
 *.pyc
+*.cpython-39.pyc
 *.log
 /venv
 /.idea

@@ -2,7 +2,7 @@ import os
 import sys
 import tomli
 import discord  # pip install py-cord
-from logs.logger import log_info
+from logs.logger import log_info, log_debug
 
 bot = discord.Bot(intents=discord.Intents.all())
 with open("server.toml", "rb") as f:
@@ -15,10 +15,11 @@ def load_cogs():
     Loads the directories under the /cogs/ folder,
     then digs through those directories and loads the cogs.
     """
+    log_info("Loading Cogs...")
     for directory in os.listdir("./cogs"):
         for file in os.listdir(f"./cogs/{directory}"):
             if file.endswith('.py') and not file.startswith("_"):
-                log_info(f"Loading Cog: \\{directory}\\{file}")
+                log_debug(f"Loading Cog: \\{directory}\\{file}")
                 bot.load_extension(f"cogs.{directory}.{file[:-3]}")
 
 

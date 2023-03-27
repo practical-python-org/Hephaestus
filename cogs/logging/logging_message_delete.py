@@ -1,8 +1,7 @@
-import discord
 from discord.ext import commands
-from datetime import datetime
 from __main__ import config
-from Hephaestus.logs.logger import log_info
+from Hephaestus.logs.logger import log_debug, log_info
+from Hephaestus.cogs.utility._embeds import embed_message_delete
 
 
 class logging_message_delete(commands.Cog):
@@ -11,27 +10,18 @@ class logging_message_delete(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message_delete(self, message):
+        current_guild = self.bot.get_guild(config['id'])
+        audit_log = [entry async for entry in current_guild.audit_logs(limit=1)][0]
+        log_debug(audit_log)
 
-        if message.author.nick is None:
-            username = message.author
-        else:
-            username = message.author.nick
+        if str(audit_log.action) == 'AuditLogAction.message_delete':
+            member = current_guild.get_member(audit_log.user.id)
 
-        author = message.author
+            embed = embed_message_delete(member, message)
 
-        embed = discord.Embed(title=f'<:red_circle:1043616578744357085> Deleted Message'
-                              , description=f'Deleted by {username}\nIn {message.channel.mention}'
-                              , color=discord.Color.dark_red()
-                              , timestamp=datetime.utcnow())
-        embed.set_thumbnail(url=author.avatar)
-        embed.add_field(name='Message: '
-                        , value=message.content  # ToDo: This throws an error when deleting an embed.
-                        , inline=True)
-
-        logs_channel = await self.bot.fetch_channel(config['chat_log'])
-        log_info(f"{username} deleted a message.")
-
-        await logs_channel.send(embed=embed)
+            log_info(f"{member.display_name} deleted a message.")
+            logs_channel = await self.bot.fetch_channel(config['chat_log'])
+            await logs_channel.send(embed=embed)
 
 
 def setup(bot):

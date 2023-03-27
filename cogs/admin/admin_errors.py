@@ -2,6 +2,7 @@ from discord.ext import commands
 import pathlib
 from __main__ import config
 
+
 class admin_errors(commands.Cog, command_attrs=dict(hidden=True)):
     def __init__(self, bot):
         self.bot = bot
@@ -13,7 +14,7 @@ class admin_errors(commands.Cog, command_attrs=dict(hidden=True)):
         with open(log_file_path, 'r') as logfile:
             logfile = logfile.read()
 
-        await ctx.send(logfile[-2000:])
+        await ctx.send(f"```bash\n{logfile[-1970:]}\n```")  # Format the error log in a code block.
 
 
 def setup(bot):

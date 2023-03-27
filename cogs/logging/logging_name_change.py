@@ -1,8 +1,7 @@
-import discord
 from discord.ext import commands
-from datetime import datetime
 from __main__ import config
 from Hephaestus.logs.logger import log_info
+from Hephaestus.cogs.utility._embeds import embed_name_change
 
 
 class logging_nameChanges(commands.Cog):
@@ -22,16 +21,10 @@ class logging_nameChanges(commands.Cog):
             username_after = after.nick
 
         if before.nick != after.nick and before.nick is not None:
-            embed = discord.Embed(title=f'<:grey_exclamation:1044305627201142880> Name Change'
-                                  , description=f'Changed by: {before}.'
-                                  , color=discord.Color.dark_grey()
-                                  , timestamp=datetime.utcnow())
-            embed.set_thumbnail(url=after.avatar)
-            embed.add_field(name='Before', value=username_before, inline=True)
-            embed.add_field(name='After', value=username_after, inline=True)
+            embed = embed_name_change(before, after, username_before, username_after)
 
             log_info(f"{username_before} has changed their name to {username_after}.")
-            logs_channel = await self.bot.fetch_channel(config['user_log'])  # ADMIN user log
+            logs_channel = await self.bot.fetch_channel(config['user_log'])
             await logs_channel.send(f'{username_after.mention}', embed=embed)
 
 

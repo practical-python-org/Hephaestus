@@ -12,6 +12,7 @@ logo = "https://raw.githubusercontent.com/Xarlos89/PracticalPython/main/logo.png
 id = 1031644670436061324
 logFileName = 'Bot_logs.log'
 Database_name = 'Hephaestus.db'
+
 ############
 # Channels #
 ############

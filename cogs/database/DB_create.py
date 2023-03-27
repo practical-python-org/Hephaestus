@@ -1,9 +1,13 @@
 from discord.ext import commands
 import sqlite3
-import pandas as pd
-from Hephaestus.logs.logger import log_info
-from pathlib import Path
+from Hephaestus.logs.logger import log_info, log_debug
+from pathlib import Path, PurePath
 from __main__ import config
+import pandas as pd
+
+current_dir = Path(__file__).parent.resolve()
+cogs_folder = current_dir.parent
+main_folder = cogs_folder.parent
 
 
 class database_innit(commands.Cog, command_attrs=dict(hidden=True)):
@@ -15,7 +19,7 @@ class database_innit(commands.Cog, command_attrs=dict(hidden=True)):
     @commands.has_role('Owner')
     async def initialize_db(self, ctx):
         if not Path(config['Database_name']).is_file():
-            conn = sqlite3.connect('Hephaestus.db')
+            conn = sqlite3.connect(PurePath(main_folder, config['Database_name']))
             c = conn.cursor()
             log_info("Creating Database...")
             c.execute('''
@@ -46,19 +50,19 @@ class database_innit(commands.Cog, command_attrs=dict(hidden=True)):
                               member.display_avatar.url, str(member.joined_at), 100, 0)
                           ))
 
+            conn.commit()
+            log_info("Database successfully created.")
+            await ctx.channel.send("Database created.")
+        else:
+            conn = sqlite3.connect(PurePath(main_folder, config['Database_name']))
+            c = conn.cursor()
             c.execute('''SELECT user_id, user_name, discriminator, nickname, user_roles_ids, user_roles_names, top_role, 
             avatar, joined_at, user_points, warnings FROM Users ''')
-
-            log_info("Users successfully created. Printing results.")
             df = pd.DataFrame(c.fetchall(),
                               columns=['user_id', 'user_name', 'discriminator', 'nickname', 'user_roles_ids',
                                        'user_roles_names', 'top_role', 'avatar', 'joined_at', 'user_points',
                                        'warnings'])
-            log_info(df.to_string())
-            conn.commit()
-
-            await ctx.channel.send("Database created.")
-        else:
+            log_debug(df.to_string())
             await ctx.channel.send("Database already exists.")
 
 
