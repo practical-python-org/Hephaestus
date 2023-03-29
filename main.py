@@ -2,6 +2,7 @@ import os
 import sys
 import tomli
 import discord  # pip install py-cord
+from Hephaestus.cogs.utility._DB_create import create_db
 from logs.logger import log_info, log_debug
 
 bot = discord.Bot(intents=discord.Intents.all())
@@ -40,3 +41,5 @@ def load_key_and_run():
 if __name__ == "__main__":
     load_cogs()
     load_key_and_run()
+    create_db(bot, config['Database_name'], config['id'])
+

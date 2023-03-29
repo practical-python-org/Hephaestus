@@ -1,3 +1,8 @@
+logo = "https://raw.githubusercontent.com/Xarlos89/PracticalPython/main/logo.png"
+id = 1031644670436061324
+logFileName = 'Hephaestus_logs.log'
+Database_name = 'Hephaestus.db'
+
 
 ############
 #  Server  #
@@ -8,10 +13,9 @@ website = 'https://xarlos89.github.io/PracticalPython/'
 email = 'Practicalpython-staff@pm.me'
 review = 'https://disboard.org/review/create/900302240559018015'
 invite = 'https://discord.gg/vgZmgNwuHw'
-logo = "https://raw.githubusercontent.com/Xarlos89/PracticalPython/main/logo.png"
-id = 1031644670436061324
-logFileName = 'Bot_logs.log'
-Database_name = 'Hephaestus.db'
+
+
+
 
 ############
 # Channels #

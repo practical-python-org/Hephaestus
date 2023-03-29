@@ -1,18 +1,15 @@
 import sqlite3
-from pathlib import Path, PurePath
+from pathlib import Path
 from Hephaestus.logs.logger import log_debug, log_info, log_critical
 from __main__ import config
 
+DB_PATH = (Path.cwd() / config["Database_name"])
 
-current_dir = Path(__file__).parent.resolve()
-cogs_folder = current_dir.parent
-main_folder = cogs_folder.parent
-conn = sqlite3.connect(PurePath(main_folder, config['Database_name']))
-log_debug(f"Database file located at {PurePath(main_folder, config['Database_name'])}")
-c = conn.cursor()
 
 
 def give_points(_USER_ID, _NUM_POINTS):
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
     c.execute('''
         UPDATE Users
         SET user_points = user_points + ?
@@ -23,6 +20,8 @@ def give_points(_USER_ID, _NUM_POINTS):
 
 
 def remove_points(_USER_ID, _NUM_POINTS):
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
     c.execute('''
         UPDATE Users
         SET user_points = user_points - ?
@@ -33,6 +32,8 @@ def remove_points(_USER_ID, _NUM_POINTS):
 
 
 def see_points(_USER_ID):
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
     c.execute('''
         SELECT user_points 
         FROM Users
@@ -44,27 +45,34 @@ def see_points(_USER_ID):
 
 
 def see_top_10():
-    c.execute('''
-        SELECT user_id, user_points 
+    log_info(DB_PATH)
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    c.execute('''SELECT user_id, user_points 
         FROM Users
         ORDER BY user_points DESC
         LIMIT 10
     ''')
-    conn.commit()
+
     data = c.fetchall()
+
+    conn.commit()  # need at least 1 commit
+    c.close()
     log_debug(f"Database SELECT Top 10 users")
     return data
 
 
 def see_user_data(_USER_ID):
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
     c.execute('''
         SELECT * 
         FROM Users
         WHERE user_id = ?
     ''', _USER_ID)
     data = c.fetchall()
+
+    conn.commit()  # need at least 1 commit
+    c.close()
     log_debug(f"Database SELECT all info from user: {_USER_ID}.")
     return data
-
-
-
