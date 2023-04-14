@@ -38,6 +38,7 @@ def load_key_and_run():
         bot.run(TOKEN)
     else:
         log_info('ERROR: You must include a bot token.')
+        log_info('Example: "python main.py BOT_TOKEN_GOES_HERE"')
 
 
 if __name__ == "__main__":
