@@ -71,7 +71,7 @@ def embed_message_delete(some_member, some_author, some_message):
     )
 
     embed.set_thumbnail(
-        url=some_author.avatar
+        url=some_member.avatar
     )
     if len(some_message.content) > 1020:
         the_message = some_message.content[0:1020] + '...'

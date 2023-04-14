@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from logs.logger import log_info
+from cogs.utility._DB_Functions import remove_points_from_user
 
 
 class moderation_bad_words(commands.Cog):
@@ -64,11 +65,13 @@ class moderation_bad_words(commands.Cog):
                 if badword in message.content.lower():
                     author = message.author
                     log_info(f'{author} used a bad word. Invoking PUNISHMENT.')
+                    remove_points_from_user(message.author.id, 5)
 
                     await message.channel.send(f"**Message by {author.mention} removed. Contained a bad word.**")
 
                     try:
-                        await message.author.send(f"Hello, {author}.\nYour message was blocked."
+                        await message.author.send(f"Hello, {author}.\nYour message was blocked and 5 points have been "
+                                                  f"removed."
                                                   f"\n\n**Your message:**\n{message.content}\n\nPlease be "
                                                   f"more mindful of your language.\n\n**Blocked word:** {badword}")
                     except discord.HTTPException:
