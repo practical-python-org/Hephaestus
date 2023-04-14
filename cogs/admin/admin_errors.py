@@ -14,7 +14,7 @@ class admin_errors(commands.Cog, command_attrs=dict(hidden=True)):
         with open(log_file_path, 'r') as logfile:
             logfile = logfile.read()
 
-        await ctx.send(f"```bash\n{logfile[-1970:]}\n```")  # Format the error log in a code block.
+        await ctx.respond(f"```bash\n{logfile[-1970:]}\n```")  # Format the error log in a code block.
 
 
 def setup(bot):

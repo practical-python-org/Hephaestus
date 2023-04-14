@@ -20,7 +20,7 @@ class DB_get_user(commands.Cog, command_attrs=dict(hidden=True)):
         log_info(profile)
         embed = embed_user_profile(profile)
 
-        await ctx.channel.send(embed=embed)
+        await ctx.respond(embed=embed)
 
 
 

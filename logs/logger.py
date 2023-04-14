@@ -14,8 +14,11 @@ logging.basicConfig(filename=log_file_path,
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-# Takes any printable input.
-# Writes it to a log file, as well as prints it in the terminal.
+
+"""
+Takes any printable input.
+Writes it to a log file, as well as prints it in the terminal.
+"""
 
 
 def log_debug(thing: object):

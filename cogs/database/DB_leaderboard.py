@@ -20,7 +20,7 @@ class db_commands(commands.Cog, command_attrs=dict(hidden=True)):
                             value=f"{member.display_name} with {person[1]}",
                             inline=False)
 
-        await ctx.channel.send(embed=embed)
+        await ctx.respond(embed=embed)
 
 
 def setup(bot):

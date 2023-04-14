@@ -17,9 +17,9 @@ class logging_message_delete(commands.Cog):
         if str(audit_log.action) == 'AuditLogAction.message_delete':
             member = current_guild.get_member(audit_log.user.id)
 
-            embed = embed_message_delete(member, message)
+            embed = embed_message_delete(member, audit_log.target, message)
 
-            log_info(f"{member.display_name} deleted a message.")
+            log_info(f"{audit_log.target} deleted a message.")
             logs_channel = await self.bot.fetch_channel(config['chat_log'])
             await logs_channel.send(embed=embed)
 

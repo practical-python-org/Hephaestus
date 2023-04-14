@@ -61,20 +61,20 @@ def embed_leave(some_member):
     return embed
 
 
-def embed_message_delete(some_member, some_message):
+def embed_message_delete(some_member, some_author, some_message):
     embed = discord.Embed(
         title=f'<:red_circle:1043616578744357085> Deleted Message'
-        , description=f'{some_member.display_name} deleted a message \nIn {some_message.channel.mention}\nMessage '
+        , description=f'{some_author} deleted a message \nIn {some_message.channel}\nMessage '
                       f'author: {some_message.author}'
         , color=discord.Color.dark_red()
         , timestamp=datetime.utcnow()
     )
 
     embed.set_thumbnail(
-        url=some_member.avatar
+        url=some_author.avatar
     )
     if len(some_message.content) > 1020:
-        the_message =  some_message.content[0:1020] + '...'
+        the_message = some_message.content[0:1020] + '...'
     else:
         the_message = some_message.content
     embed.add_field(
@@ -169,6 +169,7 @@ def embed_leaderboard():
 
     return embed
 
+
 def embed_user_profile(some_member_info):
     member = some_member_info[0]
     name = member[1] + str(member[2])
@@ -182,8 +183,8 @@ def embed_user_profile(some_member_info):
     points = member[9]
 
     embed = discord.Embed(
-        title = f"{name}'s Profile"
-        , color = discord.Color.green()
+        title=f"{name}'s Profile"
+        , color=discord.Color.green()
         , timestamp=datetime.utcnow()
     )
     embed.add_field(
@@ -206,5 +207,3 @@ def embed_user_profile(some_member_info):
         url=image
     )
     return embed
-
-
