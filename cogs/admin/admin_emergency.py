@@ -1,5 +1,5 @@
 from discord.ext import commands
-from Hephaestus.logs.logger import log_info
+from logs.logger import log_info
 
 
 class admin_emergency(commands.Cog, command_attrs=dict(hidden=True)):

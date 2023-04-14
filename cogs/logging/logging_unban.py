@@ -1,8 +1,8 @@
 import discord
 from discord.ext import commands
 from __main__ import config
-from Hephaestus.logs.logger import log_info
-from Hephaestus.cogs.utility._embeds import embed_unban
+from logs.logger import log_info
+from cogs.utility._embeds import embed_unban
 
 
 class logging_unbans(commands.Cog):

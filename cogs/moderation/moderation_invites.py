@@ -3,7 +3,7 @@ import discord
 from datetime import datetime
 from discord.ext import commands
 from __main__ import config
-from Hephaestus.logs.logger import log_info
+from logs.logger import log_info
 
 
 class moderation_invites(commands.Cog):

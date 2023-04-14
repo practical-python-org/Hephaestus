@@ -168,3 +168,43 @@ def embed_leaderboard():
     )
 
     return embed
+
+def embed_user_profile(some_member_info):
+    member = some_member_info[0]
+    name = member[1] + str(member[2])
+    roles = member[5]
+    roles = roles.replace('[', '').replace(']', '').replace("'", "").split(',')
+    rolestr = ''
+    for i in roles:
+        rolestr = rolestr + i + '\n'
+    image = member[7]
+    joined_at = member[8]
+    points = member[9]
+
+    embed = discord.Embed(
+        title = f"{name}'s Profile"
+        , color = discord.Color.green()
+        , timestamp=datetime.utcnow()
+    )
+    embed.add_field(
+        name=f"Roles: "
+        , value=rolestr
+        , inline=False
+    )
+    embed.add_field(
+        name=f"Joined at: "
+        , value=joined_at
+        , inline=False
+    )
+    embed.add_field(
+        name=f"Points: "
+        , value=points
+        , inline=False
+    )
+
+    embed.set_thumbnail(
+        url=image
+    )
+    return embed
+
+

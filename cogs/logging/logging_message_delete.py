@@ -1,7 +1,7 @@
 from discord.ext import commands
 from __main__ import config
-from Hephaestus.logs.logger import log_debug, log_info
-from Hephaestus.cogs.utility._embeds import embed_message_delete
+from logs.logger import log_debug, log_info
+from cogs.utility._embeds import embed_message_delete
 
 
 class logging_message_delete(commands.Cog):

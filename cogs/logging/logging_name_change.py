@@ -1,7 +1,7 @@
 from discord.ext import commands
 from __main__ import config
-from Hephaestus.logs.logger import log_info
-from Hephaestus.cogs.utility._embeds import embed_name_change
+from logs.logger import log_info
+from cogs.utility._embeds import embed_name_change
 
 
 class logging_nameChanges(commands.Cog):

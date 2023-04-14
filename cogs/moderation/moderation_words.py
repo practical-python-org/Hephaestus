@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from Hephaestus.logs.logger import log_info
+from logs.logger import log_info
 
 
 class moderation_bad_words(commands.Cog):

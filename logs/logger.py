@@ -2,8 +2,10 @@ import logging
 import pathlib
 import tomli
 
+with open("server.toml", "rb") as f:
+    config = tomli.load(f)
 
-log_file_path = pathlib.Path('logs', 'Bot_logs.log')
+log_file_path = pathlib.Path('logs', config['logFileName'])
 logging.basicConfig(filename=log_file_path,
                     format='%(asctime)s - %(levelname)s: %(message)s',
                     datefmt='%Y-%m-%d %H:%M.%S',

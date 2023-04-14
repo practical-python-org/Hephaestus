@@ -1,16 +1,17 @@
 import sqlite3
-from Hephaestus.logs.logger import log_info, log_debug
+from logs.logger import log_info, log_debug
 from pathlib import Path
 import pandas as pd
 
 
 def create_db(DISCORD_CLIENT, DB_NAME, GUILD_ID):
     DB_PATH = (Path.cwd() / DB_NAME)
+    log_info('Loading Database...')
 
     if DB_PATH.exists() is False:
         conn = sqlite3.connect(DB_PATH)
         c = conn.cursor()
-        log_info("Creating Database...")
+        log_info(" - No DB detected - Creating Database...")
         c.execute('''
                   CREATE TABLE IF NOT EXISTS Users
                   ([user_id] INTEGER PRIMARY KEY NOT NULL,
@@ -26,7 +27,7 @@ def create_db(DISCORD_CLIENT, DB_NAME, GUILD_ID):
                    [warnings] INTEGER
                    )
                   ''')
-        log_info("Database Created. Populating Users table...")
+        log_info(" - Database Created. Populating Users table...")
 
         guild = DISCORD_CLIENT.get_guild(GUILD_ID)
         for member in guild.members:
@@ -42,7 +43,7 @@ def create_db(DISCORD_CLIENT, DB_NAME, GUILD_ID):
         c.close()
         conn.commit()  # need at least 1 commit
         c.close()
-        log_info("Database successfully created.")
+        log_info(" - Success.")
 
     else:
         conn = sqlite3.connect(DB_PATH)
@@ -56,4 +57,4 @@ def create_db(DISCORD_CLIENT, DB_NAME, GUILD_ID):
                                    'user_roles_names', 'top_role', 'avatar', 'joined_at', 'user_points',
                                    'warnings'])
         log_debug(df.to_string())
-        log_info("Database already exists and contains data.")
+        log_info(" - Success.")
