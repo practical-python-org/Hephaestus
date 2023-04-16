@@ -6,10 +6,10 @@ from logs.logger import log_info, log_debug
 
 bot = discord.Bot(intents=discord.Intents.all())
 
-
+log_info("Loading TOML file...")
 with open("server.toml", "rb") as f:
     config = tomli.load(f)
-    log_info("Loading TOML file...\n - Success.")
+    log_info(" - Success.")
 
 
 def load_cogs():
@@ -39,6 +39,7 @@ def load_key_and_run():
     else:
         log_info('ERROR: You must include a bot token.')
         log_info('Example: "python main.py BOT_TOKEN_GOES_HERE"')
+
 
 
 if __name__ == "__main__":
