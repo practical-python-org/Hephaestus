@@ -3,8 +3,11 @@ import sys
 import tomli
 import discord  # pip install py-cord
 from logs.logger import log_info, log_debug
+from discord import SlashCommandGroup
 
-bot = discord.Bot(intents=discord.Intents.all())
+
+bot = discord.Bot(intents=discord.Intents.all(), owner_id=643393852723691533)
+
 
 log_info("Loading TOML file...")
 with open("server.toml", "rb") as f:
@@ -41,8 +44,6 @@ def load_key_and_run():
         log_info('Example: "python main.py BOT_TOKEN_GOES_HERE"')
 
 
-
 if __name__ == "__main__":
     load_cogs()
     load_key_and_run()
-

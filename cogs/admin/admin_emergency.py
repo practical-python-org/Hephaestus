@@ -1,20 +1,28 @@
+from discord import SlashCommandGroup
 from discord.ext import commands
 from logs.logger import log_info
 
 
-class admin_emergency(commands.Cog, command_attrs=dict(hidden=True)):
+class admin_emergency(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.slash_command(description="For debugging. Displays the channels of a guild within the terminal.")
-    @commands.has_permissions(manage_channels=True)
+    admin = SlashCommandGroup("admin", "Administration Commands.")
+    international_greetings = admin.create_subgroup(
+        "testing", "test test test",
+        checks=[
+            commands.is_owner().predicate
+        ],  # Ensures the owner_id user can access this group, and no one else
+    )
+
+    @international_greetings.command()
     async def channels(self, ctx):
         text_channel_list = []
         for guild in self.bot.guilds:
             for channel in guild.text_channels:
                 text_channel_list.append(channel)
         log_info(text_channel_list)
-        await ctx.send('printed in terminal')
+        await ctx.respond('printed in terminal')
 
     @commands.slash_command(description="Removes all permissions from everyone in the server except the staff.")
     @commands.has_permissions(manage_channels=True)
@@ -37,5 +45,3 @@ class admin_emergency(commands.Cog, command_attrs=dict(hidden=True)):
 
 def setup(bot):
     bot.add_cog(admin_emergency(bot))
-
-
