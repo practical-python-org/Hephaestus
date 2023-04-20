@@ -1,18 +1,15 @@
 import os
 import sys
-import tomli
+import toml
 import discord  # pip install py-cord
+from discord.ext import commands
 from logs.logger import log_info, log_debug
-from discord import SlashCommandGroup
-
 
 bot = discord.Bot(intents=discord.Intents.all(), owner_id=643393852723691533)
 
-
 log_info("Loading TOML file...")
-with open("server.toml", "rb") as f:
-    config = tomli.load(f)
-    log_info(" - Success.")
+config = toml.load('server.toml')
+log_info(" - Success.")
 
 
 def load_cogs():

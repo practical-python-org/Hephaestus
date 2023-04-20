@@ -12,7 +12,6 @@ class admin_purge(commands.Cog, command_attrs=dict(hidden=True)):
     @commands.has_permissions(manage_messages=True)
     @commands.has_role('Staff')
     async def purge_messages(self, ctx, number_messages: discord.Option(str)):
-
         # removes the need for a response
         logs_channel = await self.bot.fetch_channel(config['mod_log'])  # Welcome channel
 
@@ -25,17 +24,15 @@ class admin_purge(commands.Cog, command_attrs=dict(hidden=True)):
             f'{number_messages} messages purged from {ctx.channel.mention} by {ctx.author.mention}.')
 
     async def cog_command_error(self, ctx: commands.Context, error: commands.CommandError):
-        """
-        Error handling
-        """
         if isinstance(error, commands.MissingPermissions):
             await ctx.channel.send(
                 f"Sorry, {ctx.author.name}, you dont have the correct permissions to use this command!",
                 reference=ctx.message)
-
-        if isinstance(error, commands.MissingRole):
+        elif isinstance(error, commands.MissingRole):
             await ctx.channel.send(f"Sorry, {ctx.author.name}, you must be a member of Staff to use this command!",
                                    reference=ctx.message)
+        else:
+            raise error
 
 
 def setup(bot):

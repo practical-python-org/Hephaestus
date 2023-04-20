@@ -1,7 +1,7 @@
 from discord.ext import commands
 from logs.logger import log_info
 from cogs.utility._DB_create import create_db
-import tomli
+import toml
 
 
 class onStartup(commands.Cog, command_attrs=dict(hidden=True)):
@@ -11,8 +11,7 @@ class onStartup(commands.Cog, command_attrs=dict(hidden=True)):
     @commands.Cog.listener()
     async def on_ready(self):
         log_info(" - Success.")
-        with open("server.toml", "rb") as f:
-            config = tomli.load(f)
+        config = toml.load('server.toml')
 
         """
         Creates a User database and populates it with relevant info. 
