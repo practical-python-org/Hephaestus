@@ -1,0 +1,8 @@
+**/.env
+**/.aws
+**/.ssh
+**/.idea
+**/.gitignore
+**/.gitattributes
+**/Hephaestus_logs.log
+Hephaestus.db

@@ -28,14 +28,17 @@ def load_cogs():
 
 def load_key_and_run():
     """
-    Loads the bot key as the first arg when running the bot.
+    Loads the bot key as the first arg when running the bot OR from an env variable.
     For example:
         "python main.py BOT_TOKEN_HERE"
     """
     if len(sys.argv) > 1:
         TOKEN = sys.argv[1]
-        log_info('Loading Token...')
+        log_info('Loading Token from arg.')
         bot.run(TOKEN)
+    elif os.environ['TOKEN'] is not None:
+        log_info('Loading Token from environment variable.')
+        bot.run(os.environ['TOKEN'])
     else:
         log_info('ERROR: You must include a bot token.')
         log_info('Example: "python main.py BOT_TOKEN_GOES_HERE"')

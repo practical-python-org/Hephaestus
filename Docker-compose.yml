@@ -1,0 +1,12 @@
+---
+name: hephaestus
+services:
+
+  bot:
+    container_name: Hephaestus-bot
+    build:
+      context: bot/.
+      dockerfile: Dockerfile
+
+
+#  docker compose up -d --no-deps --build stale-pr-alerts cat-fact
