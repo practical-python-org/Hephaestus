@@ -7,5 +7,7 @@
 *.log
 /venv
 /.idea
+*.iml
+*.xml
 *.db
 *.pyc

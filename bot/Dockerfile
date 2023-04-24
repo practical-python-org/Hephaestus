@@ -20,9 +20,9 @@ RUN set -ex \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/* \
-    && chown -R appuser /app \
+    && chown -R appuser /app
 
-CMD ["python", "-u", "main.py"]
+CMD ["python","-u", "main.py"]
 
 # Set the user to run the application
 USER appuser
