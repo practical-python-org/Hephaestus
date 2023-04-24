@@ -4,6 +4,9 @@ services:
 
   bot:
     container_name: Hephaestus-bot
+    environment_file:
+      - .env
+
     build:
       context: bot/.
       dockerfile: Dockerfile
