@@ -82,3 +82,21 @@ def see_points(_USER_ID):
     c.close()
     log_debug(f"Database SELECT user: {_USER_ID}.")
     return data
+
+
+def update_roles(_USER_ID, ROLE_IDS, ROLE_NAMES):
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    c.execute('''
+        UPDATE Users
+        SET user_roles_ids = ?
+        , user_roles_names = ?
+        WHERE user_id = ?
+    ''', (ROLE_IDS, ROLE_NAMES, str(_USER_ID)))
+    data = c.fetchall()
+    log_debug(data)
+    conn.commit()  # need at least 1 commit
+    c.close()
+    log_debug(f"Database SELECT user: {_USER_ID}.")
+    return data
+

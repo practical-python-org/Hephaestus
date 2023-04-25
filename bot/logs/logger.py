@@ -9,7 +9,7 @@ logging.basicConfig(filename=log_file_path,
                     filemode='w')
 
 logger = logging.getLogger()
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
 
 """
