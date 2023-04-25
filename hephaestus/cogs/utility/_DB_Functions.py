@@ -2,9 +2,8 @@ import os
 import sqlite3
 from pathlib import Path
 
-from logs.logger import log_critical, log_debug, log_info
-
 from hephaestus.__main__ import config
+from hephaestus.logs.logger import log_critical, log_debug, log_info
 
 DB_PATH = (Path.cwd() / config["Database_name"]) if os.name == "nt" else Path(f'/app/db/{config["Database_name"]}')
 
