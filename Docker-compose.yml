@@ -12,5 +12,3 @@ services:
       - Hephaestus-db:/app/db/
 volumes:
   Hephaestus-db:
-
-#  docker compose up -d --no-deps --build stale-pr-alerts cat-fact
