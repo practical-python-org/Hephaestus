@@ -5,7 +5,8 @@ import pandas as pd
 
 
 def create_db(DISCORD_CLIENT, DB_NAME, GUILD_ID):
-    DB_PATH = (Path.cwd() / DB_NAME)
+    DB_PATH = f'/database/{DB_NAME}'
+    # DB_PATH = (Path.cwd() / DB_NAME)
     log_info('Loading Database...')
 
     if DB_PATH.exists() is False:

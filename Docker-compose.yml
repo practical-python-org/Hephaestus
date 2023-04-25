@@ -9,7 +9,7 @@ services:
     env_file:
       - .env
     volumes:
-      - Hephaestus-db:/srv/database
+      - Hephaestus-db:/database
 volumes:
   Hephaestus-db:
 
