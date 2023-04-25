@@ -15,7 +15,7 @@ RUN set -ex \
     && apt-get update \
     && apt-get upgrade -y \
     # Install dependencies
-    && pip install -r requirements.txt \
+    && pip install . \
     # Clean up
     && apt-get autoremove -y \
     && apt-get clean -y \

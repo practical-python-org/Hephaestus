@@ -1,0 +1,62 @@
+name: TestPR
+
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: [3.7, 3.8, 3.9]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install check-manifest
+        run: pip install check-manifest
+      - name: Run check-manifest
+        run: check-manifest --ignore 'tox.ini,tests/**,.editorconfig,vscode.env,.vscode/**'
+      - name: Install Tox and any other packages
+        run: pip install tox
+      - name: Run Tox
+        id: tox
+        shell: bash
+        run: |
+          result=$(tox -e py)
+          result="${result//'%'/'%25'}"
+          result="${result//$'\n'/'%0A'}"
+          result="${result//$'\r'/'%0D'}"
+          echo "::set-output name=result::$result"
+      - name: Post Test Results
+        uses: actions/github-script@v5
+        env:
+          RESULT: ${{ steps.tox.outputs.result }}
+        with:
+          script: |
+            const result = process.env.RESULT;
+            const escapedResult = result.replace(/`/g, '\\`');
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+            const commentBody = [
+              "## Test Results",
+              "```",
+              escapedResult,
+              "```",
+            ].join("\n");
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              body: commentBody,
+            });
