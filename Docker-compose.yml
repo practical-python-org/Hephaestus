@@ -10,6 +10,6 @@ services:
     env_file:
       - .env
     volumes:
-      - myapp:/srv/database
+      - bot:/srv/database
 
 #  docker compose up -d --no-deps --build stale-pr-alerts cat-fact
