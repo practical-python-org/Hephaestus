@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord import option
 from __main__ import config
 from logs.logger import log_debug, log_info, log_critical
 from cogs.utility._DB_Functions import give_points_to_user
@@ -10,8 +11,22 @@ class DB_give_points(commands.Cog, command_attrs=dict(hidden=True)):
         self.bot = bot
 
     @commands.slash_command(description='Give a user x amount of points.')
+    @option("amount_points"
+        , description="Enter an amount between 1 and 20."
+        , min_value=1
+        , max_value=20
+        , required=True
+            )
+    @option("user"
+        , description="Enter a user."
+        , required=True
+            )
     @commands.has_role('Staff')
-    async def give_points(self, ctx, amount_points, user: discord.User = None):
+    async def give_points(self
+                          , ctx:  discord.ApplicationContext
+                          , amount_points: int
+                          , user: discord.User
+                          ):
         guild = self.bot.get_guild(config['id'])
         member = guild.get_member(user.id)
         give_points_to_user(member.id, amount_points)

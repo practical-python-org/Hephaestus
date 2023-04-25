@@ -1,10 +1,13 @@
+import os
 import sqlite3
 from pathlib import Path
 from logs.logger import log_debug, log_info, log_critical
 from __main__ import config
 
 
-DB_PATH = Path(f'/app/db/{config["Database_name"]}')
+DB_PATH = ((Path.cwd() / config["Database_name"]) if os.name == 'nt' else Path(f'/app/db/{config["Database_name"]}'))
+
+
 # DB_PATH = (Path.cwd() / config["Database_name"])
 
 

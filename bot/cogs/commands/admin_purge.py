@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord import option
 from __main__ import config
 from logs.logger import log_info
 
@@ -11,7 +12,16 @@ class admin_purge(commands.Cog, command_attrs=dict(hidden=True)):
     @commands.slash_command(description='Removes up to 100 messages from channel.')
     @commands.has_permissions(manage_messages=True)
     @commands.has_role('Staff')
-    async def purge_messages(self, ctx, number_messages: discord.Option(str)):
+    @option("number_messages"
+            , description="Enter an amount between 1 and 100."
+            , min_value=1
+            , max_value=100
+            , required=True
+            )
+    async def purge_messages(self
+                             , ctx
+                             , number_messages: int
+                             ):
         # removes the need for a response
         logs_channel = await self.bot.fetch_channel(config['mod_log'])  # Welcome channel
 

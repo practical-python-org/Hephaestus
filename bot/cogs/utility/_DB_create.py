@@ -2,10 +2,13 @@ import sqlite3
 from logs.logger import log_info, log_debug
 from pathlib import Path
 import pandas as pd
+import os
 
 
 def create_db(DISCORD_CLIENT, DB_NAME, GUILD_ID):
-    DB_PATH = Path(f'/app/db/{DB_NAME}')
+    # DB_PATH = Path(f'/app/db/{DB_NAME}')
+    # Cross platform way of init-ing a DB
+    DB_PATH = ((Path.cwd() / DB_NAME) if os.name == 'nt' else Path(f'/app/db/{DB_NAME}'))
     # DB_PATH = (Path.cwd() / DB_NAME)
     log_info('Loading Database...')
 
