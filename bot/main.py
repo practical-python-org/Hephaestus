@@ -10,7 +10,8 @@ bot = discord.Bot(intents=discord.Intents.all(), owner_id=643393852723691533)
 log_info("Loading TOML file...")
 config = toml.load('server.toml')
 log_info(" - Success.")
-
+log_info(" - Success.")
+log_info(" - Success.")
 
 def load_cogs():
     """
