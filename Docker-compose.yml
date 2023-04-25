@@ -9,8 +9,8 @@ services:
     env_file:
       - .env
     volumes:
-      - database_storage:/srv/database
+      - Hephaestus-db:/srv/database
 volumes:
-  database_storage:
+  Hephaestus-db:
 
 #  docker compose up -d --no-deps --build stale-pr-alerts cat-fact
