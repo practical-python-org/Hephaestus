@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord import option
 from __main__ import config
 from logs.logger import log_debug, log_info, log_critical
 from cogs.utility._DB_Functions import see_user_data
@@ -11,7 +12,14 @@ class DB_get_user(commands.Cog, command_attrs=dict(hidden=True)):
         self.bot = bot
 
     @commands.slash_command(description='See a profile of information on a user.')
-    async def get_user(self, ctx, user: discord.User = None):
+    @option("user"
+            , description="Enter a user."
+            , required=True
+            )
+    async def get_user(self
+                       , ctx: discord.ApplicationContext
+                       , user: discord.User
+                       ):
         guild = self.bot.get_guild(config['id'])
         member = guild.get_member(user.id)
 
@@ -21,7 +29,6 @@ class DB_get_user(commands.Cog, command_attrs=dict(hidden=True)):
         embed = embed_user_profile(profile)
 
         await ctx.respond(embed=embed)
-
 
 
 def setup(bot):
