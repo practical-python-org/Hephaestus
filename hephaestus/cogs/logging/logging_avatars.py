@@ -1,7 +1,8 @@
 from discord.ext import commands
-from __main__ import config
-from logs.logger import log_info
-from cogs.utility._embeds import embed_avatar
+
+from hephaestus.__main__ import config
+from hephaestus.cogs.utility._embeds import embed_avatar
+from hephaestus.logs.logger import log_info
 
 
 class logging_avatars(commands.Cog):
@@ -15,7 +16,7 @@ class logging_avatars(commands.Cog):
 
             log_info(f"{before} changed their avatar.")
 
-            logs_channel = await self.bot.fetch_channel(config['user_log'])
+            logs_channel = await self.bot.fetch_channel(config["user_log"])
             await logs_channel.send(embed=embed)
 
 

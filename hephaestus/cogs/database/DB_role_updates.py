@@ -1,6 +1,7 @@
 from discord.ext import commands
-from cogs.utility._DB_Functions import update_roles
-from logs.logger import log_debug
+
+from hephaestus.cogs.utility._DB_Functions import update_roles
+from hephaestus.logs.logger import log_debug
 
 
 class DB_role_updates(commands.Cog):
@@ -10,7 +11,6 @@ class DB_role_updates(commands.Cog):
     @commands.Cog.listener()
     async def on_member_update(self, before, after):
         if len(before.roles) != len(after.roles):
-
             if after is None:
                 member = before
             else:

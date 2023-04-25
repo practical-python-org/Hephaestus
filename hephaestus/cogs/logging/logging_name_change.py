@@ -1,7 +1,8 @@
 from discord.ext import commands
-from __main__ import config
-from logs.logger import log_info
-from cogs.utility._embeds import embed_name_change
+
+from hephaestus.__main__ import config
+from hephaestus.cogs.utility._embeds import embed_name_change
+from hephaestus.logs.logger import log_info
 
 
 class logging_nameChanges(commands.Cog):
@@ -24,8 +25,8 @@ class logging_nameChanges(commands.Cog):
             embed = embed_name_change(before, after, username_before, username_after)
 
             log_info(f"{username_before} has changed their name to {username_after}.")
-            logs_channel = await self.bot.fetch_channel(config['user_log'])
-            await logs_channel.send(f'{username_after.mention}', embed=embed)
+            logs_channel = await self.bot.fetch_channel(config["user_log"])
+            await logs_channel.send(f"{username_after.mention}", embed=embed)
 
 
 def setup(bot):

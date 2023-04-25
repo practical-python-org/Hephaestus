@@ -1,9 +1,11 @@
 import re
-import discord
 from datetime import datetime
+
+import discord
 from discord.ext import commands
-from __main__ import config
-from logs.logger import log_info
+
+from hephaestus.__main__ import config
+from hephaestus.logs.logger import log_info
 
 
 class moderation_invites(commands.Cog):
@@ -12,21 +14,19 @@ class moderation_invites(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-
         txt = message.content
         current_channel = message.channel
-        logs_channel = await self.bot.fetch_channel(config['mod_log'])
+        logs_channel = await self.bot.fetch_channel(config["mod_log"])
 
         def is_invite(arg_message):
             # invitation types
             # Official covers official invites "discord.gg/s7s8df9a"
             # unofficial covers urls that start with d and end with letter numbers "dxxxx.gg/23bn2u2"
             official = re.search(
-                "(?:https?://)?(?:www\.|ptb\.|canary\.)?(?:discord(?:app)?\.(?:(?:com|gg)/invite/["
-                "a-z0-9-_]+)|discord\.gg/[a-z0-9-_]+)",
-                arg_message)
-            unofficial = re.search("(?:https?://)?(?:www\.)?(?:dsc\.gg|invite\.gg+|discord\.link)/[a-z0-9-_]+",
-                                   arg_message)
+                "(?:https?://)?(?:www\.|ptb\.|canary\.)?(?:discord(?:app)?\.(?:(?:com|gg)/invite/[" "a-z0-9-_]+)|discord\.gg/[a-z0-9-_]+)",
+                arg_message,
+            )
+            unofficial = re.search("(?:https?://)?(?:www\.)?(?:dsc\.gg|invite\.gg+|discord\.link)/[a-z0-9-_]+", arg_message)
             if official is not None or unofficial is not None:
                 return True
             else:
@@ -34,25 +34,26 @@ class moderation_invites(commands.Cog):
 
         def log_message(arg_message):
             author = arg_message.author
-            embed = discord.Embed(title=f'<:red_circle:1043616578744357085> Invite removed'
-                                  , description=f'Posted by {arg_message.author}\nIn {arg_message.channel.mention}'
-                                  , color=discord.Color.dark_red()
-                                  , timestamp=datetime.utcnow())
+            embed = discord.Embed(
+                title=f"<:red_circle:1043616578744357085> Invite removed",
+                description=f"Posted by {arg_message.author}\nIn {arg_message.channel.mention}",
+                color=discord.Color.dark_red(),
+                timestamp=datetime.utcnow(),
+            )
             embed.set_thumbnail(url=author.avatar)
-            embed.add_field(name='Message: '
-                            , value=message.content
-                            , inline=True)
+            embed.add_field(name="Message: ", value=message.content, inline=True)
             log_info(f"{author} sent a discord invite that was caught by spam protection.")
             return embed
 
         def embed_warning(arg_message):
             author = arg_message.author
-            embed = discord.Embed(title=f'<:x:1055080113336762408> External Invites are not allowed here!'
-                                  ,
-                                  description=f'{arg_message.author}, your message was removed because it contained '
-                                              f'an external invite.\nIf this was a mistake, contact the @staff'
-                                  , color=discord.Color.dark_red()
-                                  , timestamp=datetime.utcnow())
+            embed = discord.Embed(
+                title=f"<:x:1055080113336762408> External Invites are not allowed here!",
+                description=f"{arg_message.author}, your message was removed because it contained "
+                f"an external invite.\nIf this was a mistake, contact the @staff",
+                color=discord.Color.dark_red(),
+                timestamp=datetime.utcnow(),
+            )
             return embed
 
         if is_invite(txt) is True:
