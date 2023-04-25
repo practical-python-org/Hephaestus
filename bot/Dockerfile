@@ -20,7 +20,7 @@ RUN set -ex \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/* \
-    && chown -R appuser /
+    && chown -R appuser /app
 
 CMD ["python","-u", "main.py"]
 

@@ -4,7 +4,7 @@ from logs.logger import log_debug, log_info, log_critical
 from __main__ import config
 
 
-DB_PATH = Path(f'/database/{config["Database_name"]}')
+DB_PATH = Path(f'/app/db/{config["Database_name"]}')
 # DB_PATH = (Path.cwd() / config["Database_name"])
 
 
