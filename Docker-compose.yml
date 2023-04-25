@@ -4,12 +4,12 @@ services:
 
   bot:
     container_name: Hephaestus-bot
-    env_file:
-      - .env
-
     build:
       context: bot/.
       dockerfile: Dockerfile
-
+    env_file:
+      - .env
+    volumes:
+      - myapp:/srv/database
 
 #  docker compose up -d --no-deps --build stale-pr-alerts cat-fact
