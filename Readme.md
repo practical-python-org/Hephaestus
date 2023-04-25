@@ -33,7 +33,7 @@ and maintain user information.
 If you are running the bot on a VM in the cloud, I have prepared a simple deployment script that automates the entire workflow
 
 ``` bash
-ssh -i "SSH_KEY.pem" USER@some.cloud.server.com "cd /srv/ && sudo rm -r Hephaestus && sudo git clone https://github.com/practical-python-org/Hephaestus.git && cd Hephaestus/ && echo 'TOKEN=INSERT_YOUR_TOKEN_HERE' | sudo tee -a .env && sudo docker compose -f Docker-compose.yml up -d --build"
+ssh -i "SSH_KEY.pem" USER@some.cloud.server.com "cd /srv/ && rm -r Hephaestus && git clone https://github.com/practical-python-org/Hephaestus.git && cd Hephaestus/ && echo 'TOKEN=INSERT_YOUR_TOKEN_HERE' | tee -a .env && docker compose -f Docker-compose.yml up -d --build"
 ```
 Broken down by commands....
 
