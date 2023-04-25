@@ -21,7 +21,6 @@ RUN set -ex \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir /app/db \
-    && chown -R appuser /app/db \
     && chown -R appuser /app
 
 CMD ["python","-u", "main.py"]
