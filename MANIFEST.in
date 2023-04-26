@@ -2,15 +2,13 @@ include pyproject.toml
 include *.md
 include tox.ini
 include .dockerignore
+include Dockerfile
 recursive-include dist *.gz
 recursive-include dist *.whl
 recursive-include tests *.py
-global-exclude aws_automation/**
-recursive-include functions *.json
-recursive-include functions *.py
-recursive-include functions *.sh
-recursive-include functions *.yaml
-recursive-include functions *Dockerfile
+recursive-includ  *.py
+recursive-include *.sh
+recursive-include *.yaml
 exclude *.pyo
 exclude __pycache__
 exclude .gitignore
