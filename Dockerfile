@@ -23,7 +23,8 @@ RUN set -ex \
     && mkdir /app/db \
     && chown -R appuser /app
 
-CMD ["python","-u", "main.py"]
+CMD ["python","-u", "hephaestus/__main__.py"] 
+# Can also easily make the above CMD ["hephaestus"] by adding entry_points in setup.py
 
 # Set the user to run the application
 USER appuser
