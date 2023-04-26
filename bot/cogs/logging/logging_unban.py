@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from __main__ import config
 from logs.logger import log_info
-from cogs.utility._embeds import embed_unban
+from utility._embeds import embed_unban
 
 
 class logging_unbans(commands.Cog):

@@ -1,7 +1,7 @@
 from discord.ext import commands
 from __main__ import config
-from cogs.utility._DB_Functions import see_top_10
-from cogs.utility._embeds import embed_leaderboard
+from utility._DB_Functions import see_top_10
+from utility._embeds import embed_leaderboard
 
 
 class db_commands(commands.Cog, command_attrs=dict(hidden=True)):

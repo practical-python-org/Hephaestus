@@ -1,6 +1,6 @@
 from discord.ext import commands
 from logs.logger import log_info
-from cogs.utility._DB_create import create_db
+from utility._DB_create import create_db
 import toml
 
 
@@ -18,7 +18,7 @@ class onStartup(commands.Cog, command_attrs=dict(hidden=True)):
         If a DB exists, it will simply connecty to that one.
         """
         create_db(self.bot, config['Database_name'], config['id'])
-        log_info('\nBot is online and operational.')
+        log_info(f"\nBot is online and using {config['Database_name']}")
 
 
 def setup(bot):
