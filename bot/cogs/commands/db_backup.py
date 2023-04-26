@@ -1,11 +1,11 @@
-from discord.ext import commands
-from pathlib import Path
-from __main__ import config
 import shutil
-from logs.logger import log_debug, log_info, log_critical
+from pathlib import Path
+from discord.ext import commands
+from __main__ import config
+from logs.logger import log_info
 
 
-class DB_backup(commands.Cog, command_attrs=dict(hidden=True)):
+class DBbackup(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -29,19 +29,21 @@ class DB_backup(commands.Cog, command_attrs=dict(hidden=True)):
         # Copy the file over to the destination
         shutil.copyfile(src, dst)
 
-        await ctx.respond(f'Database backup successful.')
+        await ctx.respond('Database backup successful.')
 
     async def cog_command_error(self, ctx: commands.Context, error: commands.CommandError):
         if isinstance(error, commands.MissingPermissions):
             await ctx.channel.send(
-                f"Sorry, {ctx.author.name}, you dont have the correct permissions to use this command!",
+                f"Sorry, {ctx.author.name}, you dont have the correct \
+                permissions to use this command!",
                 reference=ctx.message)
         elif isinstance(error, commands.MissingRole):
-            await ctx.channel.send(f"Sorry, {ctx.author.name}, you must be a member of Staff to use this command!",
+            await ctx.channel.send(f"Sorry, {ctx.author.name}, you must \
+             be a member of Staff to use this command!",
                                    reference=ctx.message)
         else:
             raise error
 
 
 def setup(bot):
-    bot.add_cog(DB_backup(bot))
+    bot.add_cog(DBbackup(bot))
