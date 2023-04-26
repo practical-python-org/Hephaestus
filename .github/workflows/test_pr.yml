@@ -6,8 +6,6 @@ on:
       - main
       - master
       - dev
-      - autotesting
-
 jobs:
   build:
     runs-on: ubuntu-latest
