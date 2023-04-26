@@ -6,7 +6,9 @@ class admin_emergency(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.slash_command(description="Removes all permissions from everyone in the server except the staff.")
+    @commands.slash_command(
+        description="Removes all permissions from everyone in the server except the staff."
+    )
     @commands.has_role('Staff')
     async def lockdown(self, ctx):
         if not ctx.author.guild_permissions.administrator:
