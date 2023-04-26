@@ -3,12 +3,13 @@ include *.md
 include tox.ini
 include .dockerignore
 include Dockerfile
+include *.yml
+include  *.py
+include *.sh
+include *.yaml
 recursive-include dist *.gz
 recursive-include dist *.whl
 recursive-include tests *.py
-recursive-includ  *.py
-recursive-include *.sh
-recursive-include *.yaml
 exclude *.pyo
 exclude __pycache__
 exclude .gitignore
