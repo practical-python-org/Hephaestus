@@ -2,16 +2,14 @@ import os
 import sys
 import toml
 import discord  # pip install py-cord
-from discord.ext import commands
 from logs.logger import log_info, log_debug
 
-bot = discord.Bot(intents=discord.Intents.all(), owner_id=643393852723691533)
+bot = discord.Bot(intents=discord.Intents.all())
 
 log_info("Loading TOML file...")
 config = toml.load('server.toml')
 log_info(" - Success.")
-log_info(" - Success.")
-log_info(" - Success.")
+
 
 def load_cogs():
     """
@@ -20,10 +18,11 @@ def load_cogs():
     """
     log_info("Loading Cogs...")
     for directory in os.listdir("./cogs"):
-        for file in os.listdir(f"./cogs/{directory}"):
-            if file.endswith('.py') and not file.startswith("_"):
-                log_debug(f"Loading Cog: \\{directory}\\{file}")
-                bot.load_extension(f"cogs.{directory}.{file[:-3]}")
+        if not directory.startswith("_"):  # Makes sure __innit.py__ doesnt get called
+            for file in os.listdir(f"./cogs/{directory}"):
+                if file.endswith('.py') and not file.startswith("_"):
+                    log_debug(f"Loading Cog: \\{directory}\\{file}")
+                    bot.load_extension(f"cogs.{directory}.{file[:-3]}")
     log_info(" - Success.")
 
 
@@ -33,13 +32,15 @@ def load_key_and_run():
     For example:
         "python main.py BOT_TOKEN_HERE"
     """
-    if len(sys.argv) > 1:
+    if len(sys.argv) > 1:  # Check args for the token first
         TOKEN = sys.argv[1]
         log_info('Loading Token from arg.')
         bot.run(TOKEN)
-    elif os.environ['TOKEN'] is not None:
+
+    elif os.environ['TOKEN'] is not None:  # if not in args, check the env vars
         log_info('Loading Token from environment variable.')
         bot.run(os.environ['TOKEN'])
+
     else:
         log_info('ERROR: You must include a bot token.')
         log_info('Example: "python main.py BOT_TOKEN_GOES_HERE"')

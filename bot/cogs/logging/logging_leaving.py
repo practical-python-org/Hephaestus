@@ -1,7 +1,7 @@
 from discord.ext import commands
 from __main__ import config
 from logs.logger import log_info
-from cogs.utility._embeds import embed_leave
+from utility._embeds import embed_leave
 
 
 class logging_leaving(commands.Cog):

@@ -6,3 +6,9 @@
 **/.gitattributes
 **/Hephaestus_logs.log
 *.db
+/shelf/
+/workspace.xml
+tox.ini
+MANIFEST.in
+.github/
+tests/

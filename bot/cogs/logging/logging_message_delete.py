@@ -1,7 +1,7 @@
 from discord.ext import commands
 from __main__ import config
 from logs.logger import log_debug, log_info
-from cogs.utility._embeds import embed_message_delete
+from utility._embeds import embed_message_delete
 
 
 class logging_message_delete(commands.Cog):
@@ -20,7 +20,7 @@ class logging_message_delete(commands.Cog):
             embed = embed_message_delete(member, audit_log.target, message)
 
             log_info(f"{member} deleted a message.")
-            logs_channel = await self.bot.fetch_channel(config['chat_log'])
+            logs_channel = await self.bot.fetch_channel(config['mod_log'])
             await logs_channel.send(embed=embed)
 
 

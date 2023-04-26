@@ -1,7 +1,7 @@
 from discord.ext import commands
 from __main__ import config
 from logs.logger import log_info
-from cogs.utility._embeds import embed_name_change
+from utility._embeds import embed_name_change
 
 
 class logging_nameChanges(commands.Cog):
@@ -24,7 +24,7 @@ class logging_nameChanges(commands.Cog):
             embed = embed_name_change(before, after, username_before, username_after)
 
             log_info(f"{username_before} has changed their name to {username_after}.")
-            logs_channel = await self.bot.fetch_channel(config['user_log'])
+            logs_channel = await self.bot.fetch_channel(config['mod_log'])
             await logs_channel.send(f'{username_after.mention}', embed=embed)
 
 

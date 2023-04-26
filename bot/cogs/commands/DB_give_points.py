@@ -3,7 +3,7 @@ from discord.ext import commands
 from discord import option
 from __main__ import config
 from logs.logger import log_debug, log_info, log_critical
-from cogs.utility._DB_Functions import give_points_to_user
+from utility._DB_Functions import give_points_to_user
 
 
 class DB_give_points(commands.Cog, command_attrs=dict(hidden=True)):

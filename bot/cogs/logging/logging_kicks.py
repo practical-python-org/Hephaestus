@@ -1,7 +1,7 @@
 from discord.ext import commands
 from __main__ import config
 from logs.logger import log_info
-from cogs.utility._embeds import embed_kick
+from utility._embeds import embed_kick
 
 
 class logging_kicks(commands.Cog):
