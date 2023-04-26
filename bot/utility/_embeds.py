@@ -158,7 +158,7 @@ def embed_unban(some_member):
 
 def embed_leaderboard():
     embed = discord.Embed(
-        title=f"{config['name']}'s Top Point earners"
+        title=f"Top Point earners"
         , color=discord.Color.gold()
         , timestamp=datetime.utcnow()
     )

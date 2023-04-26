@@ -11,7 +11,7 @@ class db_commands(commands.Cog, command_attrs=dict(hidden=True)):
     @commands.slash_command(description='See the top 10 point earners.')
     async def leaderboard(self, ctx):
         data = see_top_10()
-        guild = self.bot.get_guild(config['id'])
+        guild = ctx.guild.id
 
         embed = embed_leaderboard()
         for person_number, person in enumerate(data):
