@@ -9,7 +9,7 @@ bot = discord.Bot(intents=discord.Intents.all())
 log_info("Loading TOML file...")
 config = toml.load('server.toml')
 log_info(" - Success.")
-log_info("LINT ME BITCH")
+
 
 def load_cogs():
     """
