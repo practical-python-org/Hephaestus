@@ -1,15 +1,25 @@
+"""
+Logs avatar changes
+TODO: Pull config out of here.
+"""
 from discord.ext import commands
 from __main__ import config
-from logs.logger import log_info
-from utility._embeds import embed_avatar
+from bot.logs.logger import log_info
+from bot.utility._embeds import embed_avatar
 
 
-class logging_avatars(commands.Cog):
+class LoggingAvatars(commands.Cog):
+    """
+    Simple listener to on_user_update
+    """
     def __init__(self, bot):
         self.bot = bot
 
     @commands.Cog.listener()
     async def on_user_update(self, before, after):
+        """
+        if the avatar before is != to the avatar after, do stuff.
+        """
         if before.avatar != after.avatar:
             embed = embed_avatar(before, after)
 
@@ -20,4 +30,7 @@ class logging_avatars(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(logging_avatars(bot))
+    """
+    Necessary for loading the cog into the bot instance.
+    """
+    bot.add_cog(LoggingAvatars(bot))
