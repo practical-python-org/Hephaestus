@@ -3,7 +3,7 @@ from discord.ext import commands
 from discord import option
 from __main__ import config
 from logs.logger import log_debug, log_info, log_critical
-from utility._DB_Functions import remove_points_from_user
+from utility._db_functions import remove_points_from_user
 
 
 class DB_remove_points(commands.Cog, command_attrs=dict(hidden=True)):

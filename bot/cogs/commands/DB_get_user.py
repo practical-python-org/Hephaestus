@@ -3,7 +3,7 @@ from discord.ext import commands
 from discord import option
 from __main__ import config
 from logs.logger import log_debug, log_info, log_critical
-from utility._DB_Functions import see_user_data
+from utility._db_functions import see_user_data
 from utility._embeds import embed_user_profile
 
 

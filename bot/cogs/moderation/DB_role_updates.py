@@ -1,5 +1,5 @@
 from discord.ext import commands
-from utility._DB_Functions import update_roles
+from utility._db_functions import update_roles
 from logs.logger import log_debug
 
 

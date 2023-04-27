@@ -1,5 +1,5 @@
 from discord.ext import commands
-from utility._DB_Functions import give_points_to_user, remove_points_from_user
+from utility._db_functions import give_points_to_user, remove_points_from_user
 from logs.logger import log_debug
 
 
