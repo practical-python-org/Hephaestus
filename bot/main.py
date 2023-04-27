@@ -1,3 +1,8 @@
+"""
+main.py entrypoint for the bot.
+Loads a TOML, Loads the cogs, grabs token from args or env vars
+Runs the bot
+"""
 import os
 import sys
 import toml
