@@ -38,6 +38,6 @@ class DBleaders(commands.Cog):
 
 def setup(bot):
     """
-    Necessary for loading the cog into the bot instance.
+    Necessary for loading the cog into the bot instance...
     """
     bot.add_cog(DBleaders(bot))

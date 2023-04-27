@@ -11,6 +11,7 @@ import discord
 from __main__ import config
 
 
+
 def embed_avatar(before, after):
     """
     Embedding for avatar change alerts.
