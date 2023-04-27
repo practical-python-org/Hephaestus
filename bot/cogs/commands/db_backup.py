@@ -2,6 +2,7 @@
 This command creates a copy of the .db file and exports it to the
 home folder of the current machine it's running on.
 TODO: BUG: In our docker file we specify to create a service user with no home folder.
+TODO: See if we can pull the 'config' out of here.
 """
 import shutil
 from pathlib import Path
