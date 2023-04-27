@@ -1,6 +1,6 @@
 from discord.ext import commands
 from __main__ import config
-from utility._DB_Functions import see_top_10
+from utility._db_functions import see_top_10
 from utility._embeds import embed_leaderboard
 
 

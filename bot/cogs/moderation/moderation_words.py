@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from logs.logger import log_info
-from utility._DB_Functions import remove_points_from_user
+from utility._db_functions import remove_points_from_user
 
 
 class moderation_bad_words(commands.Cog):
