@@ -24,13 +24,14 @@ class DBleaders(commands.Cog):
         then iterates over them and adds each one to its own field.
         """
         data = see_top_10()
-        guild = self.bot.get_guild(config['id'])
+        guild = ctx.guild.id
 
-        embed = embed_leaderboard()
+        embed = embed_leaderboard(ctx.guild.name, ctx.guild.icon)
         for person_number, person in enumerate(data):
-            member = guild.get_member(person[0])
+            member = await ctx.guild.fetch_member(person[0])
+            name = member.display_name
             embed.add_field(name=f" -- # {person_number+1} --",
-                            value=f"{member.display_name} with {person[1]}",
+                            value=f"{name} with {person[1]}",
                             inline=False)
 
         await ctx.respond(embed=embed)
