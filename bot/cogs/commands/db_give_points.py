@@ -1,6 +1,6 @@
 """
-This command grabs info from a user, sends it to bot/utility/_embeds
-and then produces a report on the user as a bot response.
+This command takes an amount of points and a user and
+updates the DB with the new total points.
 TODO: Pull the config out of here. We should be able to use ctx.guild.id, and
       then move into fetch_member() from there.
 """
