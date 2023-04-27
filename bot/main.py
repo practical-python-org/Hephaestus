@@ -7,14 +7,14 @@ import os
 import sys
 import toml
 import discord  # pip install py-cord
-from logs.logger import log_info, log_debug
+from bot.logs.logger import log_info, log_debug
 
 bot = discord.Bot(intents=discord.Intents.all())
 
 log_info("Loading TOML file...")
 config = toml.load('server.toml')
 log_info(" - Success.")
-log_info("LINT ME BITCH")
+
 
 def load_cogs():
     """
@@ -38,9 +38,9 @@ def load_key_and_run():
         "python main.py BOT_TOKEN_HERE"
     """
     if len(sys.argv) > 1:  # Check args for the token first
-        TOKEN = sys.argv[1]
+        token = sys.argv[1]
         log_info('Loading Token from arg.')
-        bot.run(TOKEN)
+        bot.run(token)
 
     elif os.environ['TOKEN'] is not None:  # if not in args, check the env vars
         log_info('Loading Token from environment variable.')
