@@ -1,9 +1,20 @@
-import discord
+"""
+This file holds all the discord embeds for the entire application.
+this is to clean up the cogs, and allow these embeds to be viewed
+in one place.
+TODO: See if we can pull config out of this file.
+      Should be possible by using ctx.guild.name
+      and passing it here in an arg.
+"""
 from datetime import datetime
+import discord
 from __main__ import config
 
 
 def embed_avatar(before, after):
+    """
+    Embedding for avatar change alerts.
+    """
     embed = discord.Embed(
         title=f'{before} updated their profile picture!'
         , color=discord.Color.dark_grey()
@@ -18,6 +29,9 @@ def embed_avatar(before, after):
 
 
 def embed_ban(some_member, audit_log_entry):
+    """
+    Embedding for user ban alerts.
+    """
     embed = discord.Embed(
         title=f'<:red_circle:1043616578744357085> {some_member} was banned'
         , description=f'By: {audit_log_entry.user}'
@@ -26,7 +40,7 @@ def embed_ban(some_member, audit_log_entry):
     )
 
     embed.add_field(
-        name=f'Reason:'
+        name='Reason:'
         , value=f'{audit_log_entry.reason}'
         , inline=True
     )
@@ -35,6 +49,9 @@ def embed_ban(some_member, audit_log_entry):
 
 
 def embed_kick(some_member, audit_log_entry):
+    """
+    Embedding for user kick alerts.
+    """
     embed = discord.Embed(
         title=f'<:red_circle:1043616578744357085> {some_member} was kicked'
         , description=f'By: {audit_log_entry.user}'
@@ -43,7 +60,7 @@ def embed_kick(some_member, audit_log_entry):
     )
 
     embed.add_field(
-        name=f'Reason:'
+        name='Reason:'
         , value=f'{audit_log_entry.reason}'
         , inline=True
     )
@@ -51,6 +68,9 @@ def embed_kick(some_member, audit_log_entry):
 
 
 def embed_leave(some_member):
+    """
+    Embedding for user leave alerts.
+    """
     embed = discord.Embed(
         title='\u200b'
         , description=f'{some_member} has left us.'
@@ -62,9 +82,13 @@ def embed_leave(some_member):
 
 
 def embed_message_delete(some_member, some_author, some_message):
+    """
+    Embedding for user message deletion alerts.
+    """
     embed = discord.Embed(
-        title=f'<:red_circle:1043616578744357085> Deleted Message'
-        , description=f'{some_author} deleted a message \nIn {some_message.channel}\nMessage '
+        title='<:red_circle:1043616578744357085> Deleted Message'
+        , description=f'{some_author} deleted a message'
+                      f'\nIn {some_message.channel}\nMessage '
                       f'author: {some_message.author}'
         , color=discord.Color.dark_red()
         , timestamp=datetime.utcnow()
@@ -87,9 +111,13 @@ def embed_message_delete(some_member, some_author, some_message):
 
 
 def embed_message_edit(some_username, orig_author, some_message_before, some_message_after):
+    """
+    Embedding for user message edit alerts.
+    """
     embed = discord.Embed(
-        title=f'<:orange_circle:1043616962112139264> Message Edit'
-        , description=f'Edited by {some_username}\nIn {some_message_after.channel.mention}'
+        title='<:orange_circle:1043616962112139264> Message Edit'
+        , description=f'Edited by {some_username}\n'
+                      f'In {some_message_after.channel.mention}'
         , color=discord.Color.dark_orange()
         , timestamp=datetime.utcnow()
     )
@@ -114,8 +142,11 @@ def embed_message_edit(some_username, orig_author, some_message_before, some_mes
 
 
 def embed_name_change(name_before, name_after, username_before, username_after):
+    """
+    Embedding for user name change alerts.
+    """
     embed = discord.Embed(
-        title=f'<:grey_exclamation:1044305627201142880> Name Change'
+        title='<:grey_exclamation:1044305627201142880> Name Change'
         , description=f'Changed by: {name_before}.'
         , color=discord.Color.dark_grey()
         , timestamp=datetime.utcnow()
@@ -141,8 +172,11 @@ def embed_name_change(name_before, name_after, username_before, username_after):
 
 
 def embed_unban(some_member):
+    """
+    Embedding for user un-ban alerts.
+    """
     embed = discord.Embed(
-        title=f'<:green_circle:1046088647759372388> User Un-Banned'
+        title='<:green_circle:1046088647759372388> User Un-Banned'
         , color=discord.Color.red()
         , timestamp=datetime.utcnow()
     )
@@ -157,6 +191,9 @@ def embed_unban(some_member):
 
 
 def embed_leaderboard():
+    """
+    Embedding for the leaderboard command.
+    """
     embed = discord.Embed(
         title=f"{config['name']}'s Top Point earners"
         , color=discord.Color.gold()
@@ -171,6 +208,9 @@ def embed_leaderboard():
 
 
 def embed_user_profile(some_member_info):
+    """
+    Embedding for user_info command.
+    """
     member = some_member_info[0]
     name = member[1] + str(member[2])
     roles = member[5]
@@ -188,17 +228,17 @@ def embed_user_profile(some_member_info):
         , timestamp=datetime.utcnow()
     )
     embed.add_field(
-        name=f"Roles: "
+        name="Roles: "
         , value=rolestr
         , inline=False
     )
     embed.add_field(
-        name=f"Joined at: "
+        name="Joined at: "
         , value=joined_at
         , inline=False
     )
     embed.add_field(
-        name=f"Points: "
+        name="Points: "
         , value=points
         , inline=False
     )
