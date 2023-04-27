@@ -1,3 +1,8 @@
+"""Controls the logging for the entire application.
+Also, the logging level is controlled here
+TODO: figure out a way to control this externally.
+TODO: figure out a way to drop TOML from this file.
+ """
 import logging
 import pathlib
 import toml
@@ -14,27 +19,24 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 
-"""
-Takes any printable input.
-Writes it to a log file, as well as prints it in the terminal.
-"""
-
-
 def log_debug(thing: object):
-    # print(thing)
+    """ Logs at the debug level """
     logger.debug(thing)
 
 
 def log_info(thing: object):
+    """ Logs at the info level """
     print(thing)
     logger.info(thing)
 
 
 def log_warn(thing: object):
+    """ Logs at the warn level """
     print(thing)
     logger.warning(thing)
 
 
 def log_critical(thing: object):
+    """ Logs at the critical level """
     print(thing)
     logger.critical(thing)

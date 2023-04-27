@@ -1,8 +1,13 @@
+"""
+main.py entrypoint for the bot.
+Loads a TOML, Loads the cogs, grabs token from args or env vars
+Runs the bot
+"""
 import os
 import sys
 import toml
 import discord  # pip install py-cord
-from logs.logger import log_info, log_debug
+from bot.logs.logger import log_info, log_debug
 
 bot = discord.Bot(intents=discord.Intents.all())
 
@@ -33,9 +38,9 @@ def load_key_and_run():
         "python main.py BOT_TOKEN_HERE"
     """
     if len(sys.argv) > 1:  # Check args for the token first
-        TOKEN = sys.argv[1]
+        token = sys.argv[1]
         log_info('Loading Token from arg.')
-        bot.run(TOKEN)
+        bot.run(token)
 
     elif os.environ['TOKEN'] is not None:  # if not in args, check the env vars
         log_info('Loading Token from environment variable.')

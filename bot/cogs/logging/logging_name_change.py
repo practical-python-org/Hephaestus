@@ -1,15 +1,25 @@
+"""
+Logs name changes.
+TODO: Pull config out of here.
+"""
 from discord.ext import commands
 from __main__ import config
-from logs.logger import log_info
-from utility._embeds import embed_name_change
+from bot.logs.logger import log_info
+from bot.utility._embeds import embed_name_change
 
 
-class logging_nameChanges(commands.Cog):
+class LoggingNameChanges(commands.Cog):
+    """
+    Simple listener to on_member_update
+    """
     def __init__(self, bot):
         self.bot = bot
 
     @commands.Cog.listener()
     async def on_member_update(self, before, after):
+        """
+        Just checking if the name before is != to the name after.
+        """
         if before.nick is None:
             username_before = before
         else:
@@ -29,4 +39,7 @@ class logging_nameChanges(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(logging_nameChanges(bot))
+    """
+    Necessary for loading the cog into the bot instance.
+    """
+    bot.add_cog(LoggingNameChanges(bot))

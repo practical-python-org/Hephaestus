@@ -1,25 +1,26 @@
+"""
+Runs on the bot startup, handles creation/connection to the database.
+"""
 from discord.ext import commands
-from logs.logger import log_info
-from utility._DB_create import create_db
+from bot.logs.logger import log_info
+from bot.utility._db_create import create_db
 import toml
 
 
-class onStartup(commands.Cog, command_attrs=dict(hidden=True)):
+class OnStartup(commands.Cog):
+    """Uses a listener to init the DB"""
     def __init__(self, bot):
         self.bot = bot
 
     @commands.Cog.listener()
     async def on_ready(self):
+        """Needs to load TOML to pull the DB name."""
         log_info(" - Success.")
         config = toml.load('server.toml')
-
-        """
-        Creates a User database and populates it with relevant info. 
-        If a DB exists, it will simply connecty to that one.
-        """
         create_db(self.bot, config['Database_name'], config['id'])
         log_info(f"\nBot is online and using {config['Database_name']}")
 
 
 def setup(bot):
-    bot.add_cog(onStartup(bot))
+    """ Adds the cog to the bot. """
+    bot.add_cog(OnStartup(bot))
