@@ -5,8 +5,8 @@ TODO: Pull config out of here.
 import discord
 from discord.ext import commands
 from __main__ import config
-from bot.logs.logger import log_info
-from bot.utility._embeds import embed_unban
+from logs.logger import log_info
+from utility._embeds import embed_unban
 
 
 class LoggingUnbans(commands.Cog):

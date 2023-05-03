@@ -6,7 +6,7 @@ import os
 from pathlib import Path
 import sqlite3
 import pandas as pd
-from bot.logs.logger import log_info, log_debug
+from logs.logger import log_info, log_debug
 
 
 def create_db(discord_client, db_name, guild_id):

@@ -2,8 +2,8 @@
 Runs on the bot startup, handles creation/connection to the database.
 """
 from discord.ext import commands
-from bot.logs.logger import log_info
-from bot.utility._db_create import create_db
+from logs.logger import log_info
+from utility._db_create import create_db
 import toml
 
 

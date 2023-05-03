@@ -8,7 +8,7 @@ from datetime import datetime
 import discord
 from discord.ext import commands
 from __main__ import config
-from bot.logs.logger import log_info
+from logs.logger import log_info
 
 
 class ModerationInvitations(commands.Cog):

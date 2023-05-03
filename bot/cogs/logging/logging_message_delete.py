@@ -4,8 +4,8 @@ TODO: Pull config out of here.
 """
 from discord.ext import commands
 from __main__ import config
-from bot.logs.logger import log_debug, log_info
-from bot.utility._embeds import embed_message_delete
+from logs.logger import log_debug, log_info
+from utility._embeds import embed_message_delete
 
 
 class LoggingMessageDelete(commands.Cog):

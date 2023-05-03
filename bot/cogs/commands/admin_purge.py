@@ -5,7 +5,7 @@ TODO: See if we can pull the 'config' out of here.
 from discord.ext import commands
 from discord import option
 from __main__ import config
-from bot.logs.logger import log_info
+from logs.logger import log_info
 
 
 class AdminPurge(commands.Cog, command_attrs=dict(hidden=True)):

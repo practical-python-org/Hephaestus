@@ -5,8 +5,8 @@ TODO: Pull the config out of here. We should be able to use ctx.guild.id, and
 """
 from discord.ext import commands
 from __main__ import config
-from bot.utility._db_functions import see_top_10
-from bot.utility._embeds import embed_leaderboard
+from utility._db_functions import see_top_10
+from utility._embeds import embed_leaderboard
 
 
 class DBleaders(commands.Cog):

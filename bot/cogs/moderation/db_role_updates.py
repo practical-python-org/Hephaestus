@@ -2,8 +2,8 @@
 This listens for role updates and queries the DB with the new role set
 """
 from discord.ext import commands
-from bot.utility._db_functions import update_roles
-from bot.logs.logger import log_debug
+from utility._db_functions import update_roles
+from logs.logger import log_debug
 
 
 class DBRoleUpdates(commands.Cog):
