@@ -4,7 +4,7 @@ TODO: Pull config out of here.
 """
 from discord.ext import commands
 from __main__ import config
-from bot.logs.logger import log_info
+from logs.logger import log_info
 from bot.utility._embeds import embed_name_change
 
 
