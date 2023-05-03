@@ -3,8 +3,8 @@ This grants +1 point every time a user sends a
 message, and -1 point every time a user deletes a message.
 """
 from discord.ext import commands
-from app.utility._db_functions import give_points_to_user, remove_points_from_user
-from app.logs.logger import *
+from utility._db_functions import give_points_to_user, remove_points_from_user
+from logs.logger import *
 
 
 class ModerationPointsMessaging(commands.Cog):

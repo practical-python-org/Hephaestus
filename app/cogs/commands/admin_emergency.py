@@ -4,7 +4,7 @@ It works by removing all permissions from every user except those with Admin per
 /unlock is a reversal of the lockdown.
 """
 from discord.ext import commands
-from app.logs.logger import *
+from logs.logger import *
 
 
 class AdminEmergency(commands.Cog):

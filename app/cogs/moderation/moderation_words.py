@@ -4,8 +4,8 @@ When one is detected, it removes the message and sends logs.
 """
 import discord
 from discord.ext import commands
-from app.logs.logger import *
-from app.utility._db_functions import remove_points_from_user
+from logs.logger import *
+from utility._db_functions import remove_points_from_user
 
 
 class ModerationBadwords(commands.Cog):
