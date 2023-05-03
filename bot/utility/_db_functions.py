@@ -6,7 +6,7 @@ TODO: See if we can import the DB name without the TOML file.
 import os
 import sqlite3
 from pathlib import Path
-from bot.logs.logger import log_debug
+from logs.logger import log_debug
 from __main__ import config
 
 db_path = ((Path.cwd() / config["Database_name"])
