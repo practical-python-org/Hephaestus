@@ -6,7 +6,7 @@ import shutil
 from pathlib import Path
 from discord.ext import commands
 from __main__ import config
-from app.logs.logger import *
+from logs.logger import *
 
 
 class DBbackupLoad(commands.Cog):

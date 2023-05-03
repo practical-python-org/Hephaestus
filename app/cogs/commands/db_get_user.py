@@ -8,9 +8,9 @@ import discord
 from discord.ext import commands
 from discord import option  # py-cord ONLY
 from __main__ import config
-from app.logs.logger import *
-from app.utility._db_functions import see_user_data
-from app.utility._embeds import embed_user_profile
+from logs.logger import *
+from utility._db_functions import see_user_data
+from utility._embeds import embed_user_profile
 
 
 class DBgetUser(commands.Cog):

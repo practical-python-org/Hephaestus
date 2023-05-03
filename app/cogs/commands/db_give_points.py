@@ -8,8 +8,8 @@ import discord
 from discord.ext import commands
 from discord import option  # Py-cord ONLY
 from __main__ import config
-from app.logs.logger import *
-from app.utility._db_functions import give_points_to_user
+from logs.logger import *
+from utility._db_functions import give_points_to_user
 
 
 class DBGivePoints(commands.Cog):

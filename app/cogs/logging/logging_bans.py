@@ -4,8 +4,8 @@ TODO: Pull config out of here.
 """
 from discord.ext import commands
 from __main__ import config
-from app.logs.logger import *
-from app.utility._embeds import embed_ban
+from logs.logger import *
+from utility._embeds import embed_ban
 
 
 class LoggingBans(commands.Cog):
