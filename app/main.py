@@ -7,7 +7,7 @@ import os
 import sys
 import toml
 import discord  # pip install py-cord
-from app.logs.logger import *
+from logs.logger import *
 
 bot = discord.Bot(intents=discord.Intents.all())
 
