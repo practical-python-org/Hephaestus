@@ -1,5 +1,5 @@
 """
-main.py entrypoint for the bot.
+__main__.py entrypoint for the bot.
 Loads a TOML, Loads the cogs, grabs token from args or env vars
 Runs the bot
 """
@@ -35,7 +35,7 @@ def load_key_and_run():
     """
     Loads the bot key as the first arg when running the bot OR from an env variable.
     For example:
-        "python main.py BOT_TOKEN_HERE"
+        "python __main__.py BOT_TOKEN_HERE"
     """
     if len(sys.argv) > 1:  # Check args for the token first
         token = sys.argv[1]
@@ -49,7 +49,7 @@ def load_key_and_run():
 
     else:
         log_info('ERROR: You must include a bot token.')
-        log_info('Example: "python main.py BOT_TOKEN_GOES_HERE"')
+        log_info('Example: "python __main__.py BOT_TOKEN_GOES_HERE"')
 
 
 if __name__ == "__main__":
