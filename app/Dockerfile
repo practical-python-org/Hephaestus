@@ -23,7 +23,7 @@ RUN set -ex \
     && mkdir /app/db \
     && chown -R appuser /app
 
-CMD ["python","-u", "main.py"]
+CMD ["python","-u", "__main__.py"]
 
 # Set the user to run the application
 USER appuser
