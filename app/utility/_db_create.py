@@ -11,11 +11,11 @@ from logs.logger import *
 
 def create_db(discord_client, db_name, guild_id):
     """
-    DB_PATH = Path(f'/app/db/{DB_NAME}')
     Cross platform way of init-ing a DB
-    """
-
+    If testing on a Unix local, you may  need to use:
     db_path = ((Path.cwd() / db_name) if os.name == 'nt' else Path(f'{pathlib.Path.home()}/app/db/{db_name}'))
+    """
+    db_path = ((Path.cwd() / db_name) if os.name == 'nt' else Path(f'app/db/{db_name}'))
     log_info('Loading Database...')
 
     if pathlib.Path(db_path).is_file() is False:
