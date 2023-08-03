@@ -36,7 +36,7 @@ class DBgetUser(commands.Cog):
 
         profile = see_user_data(member.id)
         log_info(f"Data on {member} requested by {ctx.author}.")
-        log_info(profile)
+        log_debug(profile)
         embed = embed_user_profile(profile)
 
         await ctx.respond(embed=embed)

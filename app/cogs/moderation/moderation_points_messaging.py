@@ -23,7 +23,7 @@ class ModerationPointsMessaging(commands.Cog):
 
         if message.author != self.bot.user:
             points_for_message = len(message.content.split(' '))
-            log_debug(f'Point added to {message.author} for sending a message.')
+            log_debug(f'{points_for_message} points added to {message.author} for sending a message.')
             give_points_to_user(message.author.id, points_for_message)
 
     @commands.Cog.listener()
@@ -34,7 +34,7 @@ class ModerationPointsMessaging(commands.Cog):
         """
         if message.author != self.bot.user:
             points_for_message = len(message.content.split(' '))
-            log_debug(f'Point removed from {message.author} for deleting a message.')
+            log_debug(f'{points_for_message} points removed from {message.author} for deleting a message.')
             remove_points_from_user(message.author.id, points_for_message)
 
 

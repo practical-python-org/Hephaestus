@@ -16,6 +16,7 @@ class DBGivePoints(commands.Cog):
     """
     Staff only command to give points to a user. min/max = 1/20.
     """
+
     def __init__(self, bot):
         self.bot = bot
 
@@ -33,7 +34,7 @@ class DBGivePoints(commands.Cog):
     @commands.has_role('Staff')
     async def give_points(
             self
-            , ctx:  discord.ApplicationContext
+            , ctx: discord.ApplicationContext
             , amount_points: int
             , user: discord.User
     ):
@@ -60,7 +61,7 @@ class DBGivePoints(commands.Cog):
                 reference=ctx.message)
         elif isinstance(error, commands.MissingRole):
             await ctx.channel.send(f"Sorry, {ctx.author.name}, you must be "
-                                    "a member of Staff to use this command!",
+                                   "a member of Staff to use this command!",
                                    reference=ctx.message)
         else:
             raise error
