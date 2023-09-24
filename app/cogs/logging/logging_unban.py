@@ -24,7 +24,7 @@ class LoggingUnbans(commands.Cog):
         embed = embed_unban(member)
 
         log_info(f"{member.name} was unbanned. Welcome back.")
-        logs_channel = await self.bot.fetch_channel(config['mod_log'])
+        logs_channel = await self.bot.fetch_channel(config['server_channels']['mod_log'])
         await logs_channel.send(embed=embed)
 
 
