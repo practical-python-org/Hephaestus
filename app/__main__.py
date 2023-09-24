@@ -5,14 +5,14 @@ Runs the bot
 """
 import os
 import sys
-import toml
+import json
 import discord  # pip install py-cord
 from logs.logger import *
 
 bot = discord.Bot(intents=discord.Intents.all())
 
-log_info("Loading TOML file...")
-config = toml.load('server.toml')
+log_info("Loading config file...")
+config = json.load(open('server.json'))
 log_info(" - Success.")
 
 
@@ -38,7 +38,8 @@ def load_key_and_run():
         "python __main__.py BOT_TOKEN_HERE"
     """
     if len(sys.argv) > 1:  # Check args for the token first
-        token = sys.argv[1]
+        token = sys.argv[1].replace('TOKEN=','')
+        print(token)
         log_info('Loading Token from arg.')
         bot.run(token)
 

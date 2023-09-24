@@ -1,7 +1,6 @@
 """
 This listens for role updates and queries the DB with the new role set
 TODO: Move the embeds into the _embed.py file
-TODO: Get the config out of here.
 """
 import re
 from datetime import datetime
@@ -26,7 +25,7 @@ class ModerationInvitations(commands.Cog):
         """
         txt = message.content
         current_channel = message.channel
-        logs_channel = await self.bot.fetch_channel(config['mod_log'])
+        logs_channel = await self.bot.fetch_channel(config['server_channels']['mod_log'])
 
         def is_invite(arg_message):
             """

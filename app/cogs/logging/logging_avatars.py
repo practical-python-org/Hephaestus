@@ -1,6 +1,5 @@
 """
 Logs avatar changes
-TODO: Pull config out of here.
 """
 from discord.ext import commands
 from __main__ import config
@@ -25,7 +24,7 @@ class LoggingAvatars(commands.Cog):
 
             log_info(f"{before} changed their avatar.")
 
-            logs_channel = await self.bot.fetch_channel(config['mod_log'])
+            logs_channel = await self.bot.fetch_channel(config['server_channels']['mod_log'])
             await logs_channel.send(embed=embed)
 
 

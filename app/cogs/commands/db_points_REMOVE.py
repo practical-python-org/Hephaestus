@@ -38,7 +38,7 @@ class DBRemovePoints(commands.Cog):
         First gets the guild ID, then the member ID from that, and then
         queries the db to update the relevant data.
         """
-        guild = self.bot.get_guild(config['id'])
+        guild = self.bot.get_guild(config['server_info']['id'])
         member = guild.get_member(user.id)
         remove_points_from_user(user.id, amount_points)
 

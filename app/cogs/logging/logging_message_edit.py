@@ -1,6 +1,5 @@
 """
 Logs messages that get edited.
-TODO: Pull config out of here.
 """
 from discord.ext import commands
 from __main__ import config
@@ -30,7 +29,7 @@ class LoggingMessageEdit(commands.Cog):
             author = message_before.author
             embed = embed_message_edit(username, author, message_before, message_after)
 
-            logs_channel = await self.bot.fetch_channel(config['mod_log'])
+            logs_channel = await self.bot.fetch_channel(config['server_channels']['mod_log'])
             log_info(f"{author} edited a message.")
             await logs_channel.send(embed=embed)
 

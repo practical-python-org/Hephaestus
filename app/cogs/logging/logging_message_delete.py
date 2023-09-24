@@ -21,7 +21,7 @@ class LoggingMessageDelete(commands.Cog):
         """
         then we grab the guild, and from there read the last entry in the audit log.
         """
-        current_guild = self.bot.get_guild(config['id'])
+        current_guild = self.bot.get_guild(config['server_info']['id'])
         audit_log = [entry async for entry in current_guild.audit_logs(limit=1)][0]
         log_debug(audit_log)
 
@@ -31,7 +31,7 @@ class LoggingMessageDelete(commands.Cog):
             embed = embed_message_delete(member, audit_log.target, message)
 
             log_info(f"{member} deleted a message.")
-            logs_channel = await self.bot.fetch_channel(config['mod_log'])
+            logs_channel = await self.bot.fetch_channel(config['server_channels']['mod_log'])
             await logs_channel.send(embed=embed)
 
 
