@@ -39,7 +39,7 @@ def load_key_and_run():
     """
     if len(sys.argv) > 1:  # Check args for the token first
         token = sys.argv[1].replace('TOKEN=','')
-        print(token)
+
         log_info('Loading Token from arg.')
         bot.run(token)
 
