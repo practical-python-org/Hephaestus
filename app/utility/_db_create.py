@@ -2,7 +2,6 @@
 Handles creation and initialization of the DB
 Is only called in the OnStartup function at app/cogs/startup/startup.py
 """
-import os
 from pathlib import Path
 import sqlite3
 import pandas as pd
@@ -11,9 +10,7 @@ from logs.logger import *
 
 def create_db(discord_client, db_name, guild_id):
     """
-    Cross platform way of init-ing a DB
-    If testing on a Unix local, you may  need to use:
-    db_path = ((Path.cwd() / db_name) if os.name == 'nt' else Path(f'{pathlib.Path.home()}/app/db/{db_name}'))
+    Cross-platform way of init-ing a DB
     """
     db_path = (Path.cwd() / 'db' / db_name)
 

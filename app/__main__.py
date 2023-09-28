@@ -11,8 +11,8 @@ from utility._token_loader import load_key_and_run
 
 bot = discord.Bot(intents=discord.Intents.all())
 
-log_info("Loading TOML file...")
-config = toml.load('server.toml')
+log_info("Loading config file...")
+config = json.load(open('server.json'))
 log_info(" - Success.")
 
 

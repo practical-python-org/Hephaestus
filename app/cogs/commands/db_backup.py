@@ -2,7 +2,6 @@
 This command creates a copy of the .db file and exports it to the
 home folder of the current machine it's running on.
 TODO: BUG: In our docker file we specify to create a service user with no home folder.
-TODO: See if we can pull the 'config' out of here.
 """
 import shutil
 from pathlib import Path
@@ -29,12 +28,12 @@ class DBbackup(commands.Cog):
         if not ctx.author.guild_permissions.administrator:
             return ctx.channel.send("You dont have permission to back up the DB.")
         # Location of current DB
-        src = Path(__file__).parents[2] / config['Database_name']
+        src = Path(__file__).parents[2] / config['server_info']['Database_name']
         dst = Path.home() / "hephaestus_backup"
 
         # Make dir if it does not exist
         dst.mkdir(parents=True, exist_ok=True)
-        dst = dst / config['Database_name']
+        dst = dst / config['server_info']['Database_name']
         log_info(f'Backing up Database to: {dst}')
 
         # Copy the file over to the destination

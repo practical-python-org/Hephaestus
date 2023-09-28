@@ -9,9 +9,8 @@ from pathlib import Path
 from logs.logger import *
 from __main__ import config
 
-db_path = ((Path.cwd() / config["Database_name"])
-           if os.name == 'nt'
-           else Path(f'/app/db/{config["Database_name"]}'))
+
+db_path = ((Path.cwd() / 'db' / config['server_info']['database_name']))
 
 
 def see_top_10():

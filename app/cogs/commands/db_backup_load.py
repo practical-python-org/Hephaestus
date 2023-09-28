@@ -1,6 +1,5 @@
 """
 This command works with db_backup to load a DB that has been copied to a home folder.
-TODO: See if we can pull the 'config' out of here.
 """
 import shutil
 from pathlib import Path
@@ -28,9 +27,9 @@ class DBbackupLoad(commands.Cog):
         if not ctx.author.guild_permissions.administrator:
             return ctx.channel.send("You dont have permission to load a backup DB.")
         # Assuming we have made a backup already in
-        # Path.home() / "hephaestus_backup" / config['Database_name']
-        src = Path.home() / "hephaestus_backup" / config['Database_name']
-        dst = Path(__file__).parents[2] / config['Database_name']
+        # Path.home() / "hephaestus_backup" / config['server_info']['Database_name']
+        src = Path.home() / "hephaestus_backup" / config['server_info']['Database_name']
+        dst = Path(__file__).parents[2] / config['server_info']['Database_name']
 
         try:
             # Copy the file over to the destination

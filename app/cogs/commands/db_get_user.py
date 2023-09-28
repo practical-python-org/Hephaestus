@@ -31,12 +31,12 @@ class DBgetUser(commands.Cog):
         First gets the guild ID, then the member ID from that, and then
         queries the db to get the relevant data.
         """
-        guild = self.bot.get_guild(config['id'])
+        guild = self.bot.get_guild(config['server_info']['id'])
         member = guild.get_member(user.id)
 
         profile = see_user_data(member.id)
         log_info(f"Data on {member} requested by {ctx.author}.")
-        log_info(profile)
+        log_debug(profile)
         embed = embed_user_profile(profile)
 
         await ctx.respond(embed=embed)

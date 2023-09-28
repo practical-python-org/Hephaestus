@@ -3,7 +3,7 @@ This command allows an elevated user to quickly check the logs for errors.
 Log level can be adjusted in /app/logs/logger.py
 TODO: Check if we can add some logic to send more than 100 lines of the log.
       We are only limited here by the size of the embed field (2000 chars).
-TODO: See if we can pull the 'config' out of here. why not hardcode the name?
+
 """
 import pathlib
 from discord.ext import commands
@@ -24,7 +24,7 @@ class AdminErrors(commands.Cog):
         """
         Uses pathlib to send 2000 lines of the error log.
         """
-        log_file_path = pathlib.Path('logs', config['logFileName'])
+        log_file_path = pathlib.Path('logs', config['server_info']['logfile_name'])
         with open(log_file_path, 'r', encoding='UTF-8') as logfile:
             logfile = logfile.read()
         await ctx.respond(f"```bash\n{logfile[-1970:]}\n```")
