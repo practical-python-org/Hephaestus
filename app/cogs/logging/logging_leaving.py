@@ -26,7 +26,7 @@ class LoggingLeaving(commands.Cog):
         if 'Needs Approval' in [role.name for role in member.roles]:
             return
 
-        current_guild = self.bot.get_guild(config['id'])
+        current_guild = self.bot.get_guild(config['server_info']['id'])
         audit_log = [entry async for entry in current_guild.audit_logs(limit=1)][0]
 
         if str(audit_log.action) != 'AuditLogAction.ban' \
@@ -34,7 +34,7 @@ class LoggingLeaving(commands.Cog):
             embed = embed_leave(member)
 
             log_info(f"{member} has left the Guild.")
-            logs_channel = await self.bot.fetch_channel(config['join_log'])
+            logs_channel = await self.bot.fetch_channel(config['server_channels']['join_log'])
             await logs_channel.send(embed=embed)
 
 

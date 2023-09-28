@@ -1,6 +1,5 @@
 """
 This is a user command that removes x amount of messages from a channel.
-TODO: See if we can pull the 'config' out of here.
 """
 from discord.ext import commands
 from discord import option
@@ -29,7 +28,7 @@ class AdminPurge(commands.Cog, command_attrs=dict(hidden=True)):
         """
         Make sure to log the purge, so that it can be examined in the case of a discrepancy.
         """
-        logs_channel = await self.bot.fetch_channel(config['mod_log'])
+        logs_channel = await self.bot.fetch_channel(config['server_channels']['mod_log'])
 
         # Do the purge
         await ctx.channel.purge(limit=int(number_messages))

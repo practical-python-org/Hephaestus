@@ -9,43 +9,40 @@ from discord.ext import commands
 from discord import option  # Py-cord ONLY
 from __main__ import config
 from logs.logger import *
-from utility._db_functions import give_points_to_user
+from utility._db_functions import remove_points_from_user
 
 
-class DBGivePoints(commands.Cog):
+class DBRemovePoints(commands.Cog):
     """
-    Staff only command to give points to a user. min/max = 1/20.
+    Staff only command to remove points from a user. min/max = 1/20.
     """
+
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.slash_command(description='Give a user x amount of points.')
+    @commands.slash_command(description='Remove x amount of points from user.')
     @option("amount_points"
         , description="Enter an amount between 1 and 20."
         , min_value=1
         , max_value=20
         , required=True
             )
-    @option("user"
-        , description="Enter a user."
-        , required=True
-            )
+    @option("user", description="Enter a user.", required=True)
     @commands.has_role('Staff')
-    async def give_points(
-            self
-            , ctx:  discord.ApplicationContext
-            , amount_points: int
-            , user: discord.User
-    ):
+    async def remove_points(self
+                            , ctx: discord.ApplicationContext
+                            , amount_points: int
+                            , user: discord.User
+                            ):
         """
         First gets the guild ID, then the member ID from that, and then
         queries the db to update the relevant data.
         """
-        guild = self.bot.get_guild(config['id'])
+        guild = self.bot.get_guild(config['server_info']['id'])
         member = guild.get_member(user.id)
-        give_points_to_user(member.id, amount_points)
+        remove_points_from_user(user.id, amount_points)
 
-        message = f"{amount_points} Points given to {member} by {ctx.author}."
+        message = f"{amount_points} Points removed from {member} by {ctx.author}."
         log_info(message)
         await ctx.respond(message)
 
@@ -59,8 +56,8 @@ class DBGivePoints(commands.Cog):
                 "permissions to use this command!",
                 reference=ctx.message)
         elif isinstance(error, commands.MissingRole):
-            await ctx.channel.send(f"Sorry, {ctx.author.name}, you must be "
-                                    "a member of Staff to use this command!",
+            await ctx.channel.send(f"Sorry, {ctx.author.name}, you must be a "
+                                   "member of Staff to use this command!",
                                    reference=ctx.message)
         else:
             raise error
@@ -70,4 +67,4 @@ def setup(bot):
     """
     Necessary for loading the cog into the bot instance.
     """
-    bot.add_cog(DBGivePoints(bot))
+    bot.add_cog(DBRemovePoints(bot))

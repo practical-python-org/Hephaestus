@@ -5,11 +5,11 @@ TODO: figure out a way to drop TOML from this file.
  """
 import logging
 import pathlib
-import toml
+import json
 
-config = toml.load('server.toml')
+config = json.load(open('server.json'))
 
-log_file_path = pathlib.Path('logs', config['logFileName'])
+log_file_path = pathlib.Path('logs', config['server_info']['logfile_name'])
 logging.basicConfig(filename=log_file_path,
                     format='%(asctime)s - %(levelname)s: %(message)s',
                     datefmt='%Y-%m-%d %H:%M.%S',
