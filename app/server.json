@@ -1,0 +1,19 @@
+{
+  "bot_info": {
+    "name": "Hephaestus"
+  },
+  "server_info": {
+    "id": 1031644670436061324,
+    "logfile_name": "Hephaestus_logs.log",
+    "database_name": "Hephaestus.db"
+  },
+  "server_channels": {
+    "mod_log": 1055124663526752297,
+    "join_log": 1043967844934762556
+  },
+  "server_roles": {
+    "needs_approval": 1043624460168728600,
+    "muted": 1062270105339301900,
+    "naughty": 1062270109839790100
+  }
+}

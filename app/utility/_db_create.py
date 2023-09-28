@@ -15,7 +15,8 @@ def create_db(discord_client, db_name, guild_id):
     If testing on a Unix local, you may  need to use:
     db_path = ((Path.cwd() / db_name) if os.name == 'nt' else Path(f'{pathlib.Path.home()}/app/db/{db_name}'))
     """
-    db_path = ((Path.cwd() / db_name) if os.name == 'nt' else Path(f'/app/db/{db_name}'))
+    db_path = (Path.cwd() / 'db' / db_name)
+
     log_info(f'Loading Database...{db_path}')
 
     if pathlib.Path(db_path).is_file() is False:

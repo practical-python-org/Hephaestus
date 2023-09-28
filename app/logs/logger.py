@@ -1,7 +1,6 @@
 """Controls the logging for the entire application.
 Also, the logging level is controlled here
 TODO: figure out a way to control this externally.
-TODO: figure out a way to drop TOML from this file.
  """
 import logging
 import pathlib
