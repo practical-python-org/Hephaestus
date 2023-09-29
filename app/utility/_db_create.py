@@ -80,4 +80,4 @@ def create_db(discord_client, db_name, guild_id):
                 , 'user_points', 'warnings'])
         log_debug(dataframe.to_string())
         connection.close()
-        log_info(" - Success.")
+        log_info(" - Success.", True)  # Logs the successful connection to the DB

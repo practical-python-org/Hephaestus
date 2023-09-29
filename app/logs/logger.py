@@ -6,6 +6,9 @@ import logging
 import pathlib
 import json
 
+from colorama import Fore, Style
+
+
 config = json.load(open('server.json'))
 
 log_file_path = pathlib.Path('logs', config['server_info']['logfile_name'])
@@ -23,19 +26,22 @@ def log_debug(thing: object):
     logger.debug(thing)
 
 
-def log_info(thing: object):
+def log_info(thing: object, *success):
     """ Logs at the info level """
-    print(thing)
+    if success:
+        print(Fore.GREEN + thing + Style.RESET_ALL)
+    else:
+        print(thing)
     logger.info(thing)
 
 
 def log_warn(thing: object):
     """ Logs at the warn level """
-    print(thing)
+    print(Fore.RED + thing + Style.RESET_ALL)
     logger.warning(thing)
 
 
 def log_critical(thing: object):
     """ Logs at the critical level """
-    print(thing)
+    print(Fore.RED + thing + Style.RESET_ALL)
     logger.critical(thing)

@@ -15,9 +15,9 @@ class OnStartup(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         """Needs to load TOML to pull the DB name."""
-        log_info(" - Success.")
+        log_info(" - Success.", True) # Logs the success of the token loading
         create_db(self.bot, config['server_info']['database_name'], config['server_info']['id'])
-        log_info(f"\nBot is online and using {config['server_info']['database_name']}")
+        log_info(f"\nBot is online and using {config['server_info']['database_name']}", True)
 
 
 def setup(bot):

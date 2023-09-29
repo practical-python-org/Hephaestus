@@ -14,4 +14,4 @@ def load_cogs(discord_client):
                 if file.endswith('.py') and not file.startswith("_"):
                     log_debug(f"Loading Cog: \\{directory}\\{file}")
                     discord_client.load_extension(f"cogs.{directory}.{file[:-3]}")
-    log_info(" - Success.")
+    log_info(" - Success.", True)
