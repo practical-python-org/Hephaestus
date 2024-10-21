@@ -8,5 +8,5 @@ frozenlist==1.3.3
 idna==3.4
 multidict==6.0.4
 toml==0.10.2
-yarl==1.9.2
+yarl==1.16.0
 pandas==2.0.2
